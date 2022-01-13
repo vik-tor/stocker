@@ -1,0 +1,13 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "rikel",
+    "password": "password",
+    "host": "localhost",
+    "database": "rikel",
+    "port": 5432
+  },
+  "prod": {
+    "driver": "pg"
+  }
+}
