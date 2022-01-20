@@ -1,10 +1,10 @@
 {
   "dev": {
     "driver": "pg",
-    "user": "rikel",
-    "password": "password",
+    "user": "keeper",
+    "password": "gr00t",
     "host": "localhost",
-    "database": "rikel",
+    "database": "stocker",
     "port": 5432
   },
   "prod": {

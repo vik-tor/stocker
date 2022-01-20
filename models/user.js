@@ -6,19 +6,19 @@ class User {
     this.id = data.id;
     this.first_name = data.first_name;
     this.last_name = data.last_name;
+    this.username = data.username;
     this.email = data.email;
     this.password = data.password;
-    this.phone = data.phone || null;
-    this.gender = data.gender || null;
     this.status = data.status || null;
     this.role = data.role;
     this.created_at = moment(data.created_at).format('MMM D, YYYY') || null;
+    this.updated_at = moment(data.updated_at).format('MMM D, YYYY') || null;
   };
 
   static async fetchAll(cb) {
     const stmt = `
-      SELECT id, first_name, last_name, email, created_at, status, role
-      FROM users
+      SELECT id, first_name, last_name, username, email, status, role, created_at, updated_at
+      FROM stock.users
     `;
 
     await db.any(stmt)
@@ -36,8 +36,8 @@ class User {
 
   static async fetchById(id, callback) {
     const stmt = `
-      SELECT id, first_name, last_name, email, password, phone, gender, created_at, status, role
-      FROM users
+      SELECT id, first_name, last_name, username, email, password, status, role, created_at, updated_at
+      FROM stock.users
       WHERE id = $1
     `;
 
@@ -50,14 +50,14 @@ class User {
       });
   };
 
-  static async fetchByEmail(email, callback) {
+  static async fetchUser(params, callback) {
     const stmt = `
-      SELECT id, first_name, last_name, email, password, phone, gender, created_at, status, role
-      FROM users
-      WHERE email = $1
+      SELECT id, first_name, last_name, username, email, password, status, role, created_at, updated_at
+      FROM stock.users
+      WHERE email = $1 OR username = $1
     `;
 
-    await db.one(stmt, email)
+    await db.one(stmt, params)
       .then(data => {
         return callback(null, new User(data));
       })
@@ -68,10 +68,10 @@ class User {
 
   static async create(values, callback) {
     const stmt = `
-      INSERT INTO users (
-        first_name, last_name, email, password, phone, gender, created_at
+      INSERT INTO stock.users (
+        first_name, last_name, username, email, password, status, role, created_at
       )
-      VALUES ($1, $2, $3, $4, $5, $6, NOW())
+      VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
       RETURNING *
     `;
 
@@ -86,9 +86,9 @@ class User {
 
   static async edit(values, callback) {
     const stmt = `
-      UPDATE users
-      SET first_name = $1, last_name = $2, email = $ 3, phone = $4, gender = $5, updated_at = NOW()
-      WHERE id = $6
+      UPDATE stock.users
+      SET first_name = $1, last_name = $2, email = $3, updated_at = NOW()
+      WHERE id = $4
       RETURNING *
     `;
 
@@ -101,9 +101,41 @@ class User {
       });
   };
 
+  static async updateUsername(values, cb) {
+    const stmt = `
+      UPDATE stock.users
+      SET username = $1, updated_at = NOW()
+      WHERE id = $2
+    `;
+
+    await db.none(stmt, values)
+      .then(data => {
+        return cb(null, data);
+      })
+      .catch(err => {
+        return cb(err);
+      });
+  };
+
+  static async updatePassword(values, cb) {
+    const stmt = `
+      UPDATE stock.users
+      SET password = $1, updated_at = NOW()
+      WHERE id = $2
+    `;
+
+    await db.none(stmt, values)
+      .then(data => {
+        return cb(null, data);
+      })
+      .catch(err => {
+        return cb(err);
+      });
+  };
+
   static async assignRole(values, callback) {
     const stmt = `
-      UPDATE users
+      UPDATE stock.users
       SET role = $1, updated_at = NOW()
       WHERE id = $2
     `;
@@ -119,7 +151,7 @@ class User {
 
   static async suspend(id, callback) {
     const stmt = `
-      UPDATE users
+      UPDATE stock.users
       SET status = $1
       WHERE id = $2
       RETURNING *
@@ -136,7 +168,7 @@ class User {
 
   static async restore(id, callback) {
     const stmt = `
-      UPDATE users
+      UPDATE stock.users
       SET status = $1
       WHERE id = $2
       RETURNING *
@@ -153,7 +185,7 @@ class User {
 
   static async trash(id, callback) {
     const stmt = `
-      UPDATE users
+      UPDATE stock.users
       SET deleted = $1, deleted_on = NOW()
       WHERE id = $2
       RETURNING *
@@ -166,68 +198,6 @@ class User {
       .catch(err => {
         return callback(err);
       });
-  };
-
-  static async getLikedEvents(id, callback) {
-    const stmt = `
-      SELECT a.id, a.title, a.slug, a.featured_image, a.start_date, a.location, a.online, a.paid
-      FROM activities a
-      LEFT JOIN activity_user u
-        ON u.activity_id = a.id
-        WHERE u.user_id = $1
-    `;
-
-    await db.any(stmt, id)
-      .then(data => {
-        return callback(null, data);
-      })
-      .catch(err => {
-        return callback(err);
-      });
-  };
-
-
-  static async fetchSubs(id, callback) {
-    const stmt = `
-      SELECT ARRAY(
-        SELECT user_id from subscriptions
-        WHERE activity_id = $1
-      )
-    `;
-
-    await db.any(stmt, id)
-      .then(data => {
-        return callback(null, data);
-      })
-      .catch(err => {
-        return callback(err);
-      });
-  };
-
-  static async subscribe(aid, uid, tid, cb) {
-    const stmt = `
-      INSERT INTO subscriptions (
-        product_id, user_id, transaction_id, created_at
-      )
-      VALUES ($1, $2, $3, NOW())
-    `;
-
-    await db.none(stmt, [aid, uid, tid])
-      .catch(err => {
-        return cb(err);
-      })
-  };
-
-  static async unsubscribe(aid, uid, cb) {
-    const stmt = `
-      DELETE FROM subscriptions
-      WHERE product_id = $1 AND user_id = $2
-    `;
-
-    await db.none(stmt, [aid, uid])
-      .catch(err => {
-        return cb(err);
-      })
   };
 };
 

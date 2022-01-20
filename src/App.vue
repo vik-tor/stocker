@@ -1,36 +1,26 @@
 <template>
-  <the-navbar />
-  <router-view />
-  <the-footer />
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-import TheNavbar from "@/components/TheNavbar.vue";
-import TheFooter from "@/components/Footer.vue";
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
+  name: 'App',
   components: {
-    TheNavbar,
-    TheFooter,
-  },
-};
+    HelloWorld
+  }
+}
 </script>
 
 <style>
 #app {
-  background-color: #efefef;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
   color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  margin-top: 60px;
 }
 </style>

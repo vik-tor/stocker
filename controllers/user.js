@@ -18,13 +18,12 @@ const signup = async (req, res) => {
   // comment
 
   const {
-    first_name, last_name, email, password, phone, gender, created_at
+    first_name, last_name, email, username, password, phone, gender, created_at
   } = req.body;
   const hashedPassword = await hashPassword(password);
   const values = [
-    first_name, last_name, email, hashedPassword, phone, gender, created_at
+    first_name, last_name, email, username, hashedPassword, phone, gender, created_at
   ];
-  let usr = [];
 
   await User.create(values, (err, user) => {
     if (err) {
@@ -59,9 +58,11 @@ const signin = async (req, res) => {
     return res.status(422).jsonp(errors.array());
   };
 
-  const { email, password } = req.body;
+  const { email, username, password } = req.body;
 
-  await User.fetchByEmail(email, async (err, user) => {
+  var param = email ? email : username;
+
+  await User.fetchUser(param, async (err, user) => {
     if (err) {
       if (err.received == 0) {
         errorMessage.error = 'User with the email (' + email + ') does not exist';
@@ -169,6 +170,99 @@ const editProfile = async (req, res) => {
   });
 };
 
+const changeUsername = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).jsonp(errors.array());
+  };
+
+  const { username, newUsername } = req.body;
+  const id = req.user.id;
+
+  await User.fetchById(id, async (err, user) => {
+    if (err) {
+      errorMessage.error = 'Failed to fetch user: ' + err.message;
+      log('Change password', err);
+      return res.status(status.error).send(errorMessage);
+    };
+
+    // check if username exists
+    await User.fetchByUsername(newUsername, async (err, user) => {
+      if (err) {
+        errorMessage.error = 'Failed to fetch user: ' + err.message;
+        log('Change password', err);
+        return res.status(status.error).send(errorMessage);
+      };
+
+      if (user) {
+        errorMessage.error = 'Username already exists';
+        errorMessage.param = 'username';
+        return res.status(status.bad).send(errorMessage);
+      };
+
+      // check if username is valid
+      if (!validator.isAlphanumeric(newUsername)) {
+        errorMessage.error = 'Username must be alphanumeric';
+        errorMessage.param = 'username';
+        return res.status(status.bad).send(errorMessage);
+      };
+
+      // update username
+      await User.changeUsername(username, newUsername, id, async (err, user) => {
+        if (err) {
+          errorMessage.error = 'Failed to change username: ' + err.message;
+          log('Change password', err);
+          return res.status(status.error).send(errorMessage);
+        };
+
+        successMessage.data = user;
+        return res.status(status.success).send(successMessage);
+      });
+    });
+  });
+}
+
+const changePassword = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).jsonp(errors.array());
+  };
+
+  const { password, newPassword } = req.body;
+  const id = req.user.id;
+
+  await User.fetchById(id, async (err, user) => {
+    if (err) {
+      errorMessage.error = 'Failed to fetch user: ' + err.message;
+      log('Change password', err);
+      return res.status(status.error).send(errorMessage);
+    };
+
+    const pass = await bcrypt.compare(password, user.password);
+    if (!pass) {
+      errorMessage.error = 'Wrong password';
+      errorMessage.param = 'password';
+      return res.status(status.bad).send(errorMessage);
+    }
+
+    const hashedPassword = await hashPassword(newPassword);
+    const values = [
+      hashedPassword, id
+    ];
+
+    await User.updatePassword(values, (err, user) => {
+      if (err) {
+        errorMessage.error = 'Failed to change password: ' + err.message;
+        log('Change password', err);
+        return res.status(status.error).send(errorMessage);
+      };
+
+      successMessage.data = user;
+      return res.status(status.created).send(successMessage);
+    });
+  });
+};
+
 const trashUser = async (req, res) => {
   const id = req.params;
 
@@ -183,20 +277,6 @@ const trashUser = async (req, res) => {
   });
 };
 
-const getFavorites = async (req, res) => {
-  const { id } = req.user;
-
-  await User.getLikedEvents(id, (err, data) => {
-    if (err) {
-      errorMessage.error = 'Failed to fetch liked events: ' + err;
-      log('Get faves', err);
-      return res.status(status.error).send(errorMessage);
-    };
-    successMessage.data = data;
-    return res.status(status.success).send(successMessage);
-  });
-}
-
 module.exports = {
   signup,
   signin,
@@ -205,5 +285,6 @@ module.exports = {
   refreshUserToken,
   editProfile,
   trashUser,
-  getFavorites
+  changePassword,
+  changeUsername
 };
