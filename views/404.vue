@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "NotFound",
+  name: 'NotFound',
 };
 </script>
 
@@ -46,11 +46,11 @@ export default {
   display: inline-block;
   width: 140px;
   height: 140px;
-  background-image: url(../assets/emoji.png);
+  /* background-image: url('/../assets/emoji.png'); */
   background-size: cover;
 }
 .notfound .notfound-404:before {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 100%;

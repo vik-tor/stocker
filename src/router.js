@@ -21,13 +21,13 @@ const routes = [
     path: '/signin',
     name: 'signin',
     props: route => ({ dest: route.query.dest }),
-    component: () => import(/* webpackChunkName: "login" */ '../views/auth/SignIn')
+    component: () => import(/* webpackChunkName: "login" */ '../views/Signin')
   },
   {
     path: '/signup',
     name: 'signup',
     props: route => ({ dest: route.query.dest }),
-    component: () => import(/* webpackChunkName: "signup" */ '../views/auth/SignUp')
+    component: () => import(/* webpackChunkName: "signup" */ '../views/Signup')
   },
   {
     path: "/profile",

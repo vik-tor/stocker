@@ -1,8 +1,10 @@
 <template>
-  <the-navbar />
-  <div class="h-screen flex flex-row flex-wrap">
-    <the-sidebar />
-    <router-view />
+  <div class="bg-gray-100">
+    <the-navbar />
+    <div class="h-screen flex flex-row flex-wrap">
+      <the-sidebar />
+      <router-view />
+    </div>
   </div>
 </template>
 

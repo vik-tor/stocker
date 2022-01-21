@@ -19,9 +19,8 @@
 <script>
 import { ref, onMounted } from 'vue';
 
-import { fetchProducts } from '@/api/products';
-import Categories from '@/components/Categories.vue';
-import Search from '@/components/SearchBar.vue';
+import { fetchProducts } from '@/api/devices';
+import Search from '@/components/Search.vue';
 
 export default {
   name: 'Home',

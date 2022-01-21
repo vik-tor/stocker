@@ -123,7 +123,7 @@
         <div class="card-body flex flex-row">
           <!-- image -->
           <div class="img-wrapper w-40 h-40 flex justify-center items-center">
-            <img src="./img/happy.svg" alt="img title" />
+            <!-- <img src="./img/happy.svg" alt="img title" /> -->
           </div>
           <!-- end image -->
 
@@ -512,17 +512,13 @@
 <script>
 import { ref, onMounted } from 'vue';
 
-import { fetchProducts } from '@/api/products';
-import VCard from '../components/VCard.vue';
-import Search from '@/components/SearchBar.vue';
-import Categories from '@/components/Categories.vue';
+import { fetchProducts } from '@/api/devices';
+import Search from '@/components/Search.vue';
 
 export default {
   name: 'Home',
   components: {
     Search,
-    Categories,
-    VCard,
   },
   setup() {
     const products = ref([]);
