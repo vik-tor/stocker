@@ -1,10 +1,11 @@
-<template>
-  <div class="bg-gray-100">
-    <the-navbar />
-    <div class="h-screen flex flex-row flex-wrap">
-      <the-sidebar />
+<template class="flex flex-row min-h-screen bg-gray-100 text-gray-800">
+  <div class="flex flex-row min-h-screen bg-gray-100 text-gray-800">
+    <the-sidebar />
+    <main
+      class="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in"
+    >
       <router-view />
-    </div>
+    </main>
   </div>
 </template>
 
