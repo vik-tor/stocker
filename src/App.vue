@@ -2,9 +2,17 @@
   <div class="flex flex-row min-h-screen bg-gray-100 text-gray-800">
     <the-sidebar />
     <main
-      class="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in"
+      class="main flex flex-col flex-grow lg:ml-64 transition-all duration-150 ease-in lg:px-8"
     >
       <router-view />
+      <footer class="footer px-4 py-6">
+        <div class="footer-content">
+          <p class="text-sm text-gray-600 text-center">
+            © Brandname 2020. All rights reserved.
+            <a href="https://twitter.com/iaminos">by iAmine</a>
+          </p>
+        </div>
+      </footer>
     </main>
   </div>
 </template>

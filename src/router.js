@@ -1,67 +1,85 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "./views/Home.vue";
 
 const routes = [
+  {
+    path: '/signin',
+    name: 'signin',
+    props: route => ({ dest: route.query.dest }),
+    component: () => import(/* webpackChunkName: "login" */ './views/Signin')
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    props: route => ({ dest: route.query.dest }),
+    component: () => import(/* webpackChunkName: "signup" */ './views/Signup')
+  },
   {
     path: "/",
     name: "Home",
     component: Home,
   },
   {
-    path: "/add_product",
-    name: "new_product",
-    component: () => import(/* webpackChunkName: "new" */ "../views/New"),
+    path: "/devices",
+    name: "devices",
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "devices" */ "./views/Devices"),
   },
   {
-    path: "/edit_product/:id",
-    name: "edit_product",
-    component: () => import(/* webpackChunkName: "edit" */ "../views/Edit"),
+    path: "/accessories",
+    name: "accessories",
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "accessories" */ "./views/Accessories"),
   },
   {
-    path: '/signin',
-    name: 'signin',
-    props: route => ({ dest: route.query.dest }),
-    component: () => import(/* webpackChunkName: "login" */ '../views/Signin')
+    path: "/repairs",
+    name: "repairs",
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "repairs" */ "./views/Repairs"),
   },
   {
-    path: '/signup',
-    name: 'signup',
-    props: route => ({ dest: route.query.dest }),
-    component: () => import(/* webpackChunkName: "signup" */ '../views/Signup')
+    path: "/device",
+    name: "new_device",
+    component: () => import(/* webpackChunkName: "new_device" */ "./views/NewDevice"),
+  },
+  {
+    path: "/accessory",
+    name: "new_accessory",
+    component: () => import(/* webpackChunkName: "new_accessory" */ "./views/NewAccessory"),
+  },
+  {
+    path: "/search",
+    name: "search",
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "search" */ "./views/Results"),
+  },
+  {
+    path: "/sales",
+    name: "sales",
+    props: true,
+    component: () => import(/* webpackChunkName: "sales" */ "./views/Sales"),
   },
   {
     path: "/profile",
     name: "profile",
-    redirect: "/profile/ads",
-    component: () => import(/* webpackChunkName: "profile" */ "../views/Profile"),
+    redirect: "/profile",
+    component: () => import(/* webpackChunkName: "profile" */ "./views/Profile"),
   },
   {
-    path: "/stock",
-    name: "results",
+    path: "/users",
+    name: "users",
     props: true,
-    component: () =>
-      import(/* webpackChunkName: "results" */ "../views/Results"),
-    children: [
-      {
-        path: "search",
-        name: "filter",
-        props: true,
-        component: () =>
-          import(/* webpackChunkName: "filter" */ "../views/Search"),
-      },
-    ],
-  },
-  {
-    path: "/sales",
-    name: "sold",
-    props: true,
-    component: () => import(/* webpackChunkName: "ad" */ "../views/Sales"),
+    component: () => import(/* webpackChunkName: "users" */ "./views/Users"),
   },
   {
     path: "/:pathMatch(.*)*",
     name: "notFound",
     meta: { requiresAuth: false },
-    component: () => import(/* webpackChunkName: 'NotFound' */ "../views/404"),
+    component: () => import(/* webpackChunkName: 'NotFound' */ "./views/404"),
   },
 ];
 
