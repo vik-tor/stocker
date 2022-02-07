@@ -5,19 +5,19 @@
       <div class="text-left">
         <span
           class="inline-block rounded-full text-white bg-purple-500 px-2 py-1 text-xs font-bold mr-3"
-          >Primary</span
+          >Laptops</span
         >
         <span
           class="inline-block rounded-full text-white bg-indigo-500 px-2 py-1 text-xs font-bold mr-3"
-          >Success</span
+          >Phones</span
         >
         <span
           class="inline-block rounded-full text-white bg-blue-500 px-2 py-1 text-xs font-bold mr-3"
-          >Info</span
+          >Brand v</span
         >
         <span
           class="inline-block rounded-full text-white bg-yellow-500 px-2 py-1 text-xs font-bold mr-3"
-          >Warning</span
+          >Shop</span
         >
         <span
           class="inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3"
@@ -37,25 +37,37 @@
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Name
+                  Model
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Title
+                  Processor
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Status
+                  RAM
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Role
+                  Storage
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Price
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Shop
                 </th>
                 <th scope="col" class="relative px-6 py-3">
                   <span class="sr-only">Edit</span>
@@ -63,41 +75,51 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr v-for="person in people" :key="person.email">
+              <tr v-for="device in devices" :key="device.id">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
-                    <div class="flex-shrink-0 h-10 w-10">
-                      <img
-                        class="h-10 w-10 rounded-full"
-                        :src="person.image"
-                        alt=""
-                      />
-                    </div>
-                    <div class="ml-4">
+                    <div class="ml-0">
                       <div class="text-sm font-medium text-gray-900">
-                        {{ person.name }}
+                        {{ device.model }}
                       </div>
                       <div class="text-sm text-gray-500">
-                        {{ person.email }}
+                        {{ device.brand }}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{ person.title }}</div>
+                  <div class="text-sm text-gray-900">
+                    {{ device.processor }}
+                  </div>
                   <div class="text-sm text-gray-500">
-                    {{ person.department }}
+                    {{ device.processor_speed }}GHz
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <span
                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
                   >
-                    Active
+                    {{ device.ram }}GB
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900">
+                    {{ device.storage_size }}GB
+                  </div>
+                  <div class="text-sm text-gray-500 uppercase">
+                    {{ device.storage_type }}
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span
+                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                  >
+                    {{ device.price }}
                   </span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{ person.role }}
+                  {{ device.shop }}
                 </td>
                 <td
                   class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
@@ -116,29 +138,29 @@
 </template>
 
 <script>
-const people = [
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    department: 'Optimization',
-    role: 'Admin',
-    email: 'jane.cooper@example.com',
-    image:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  // More people...
-];
+import { ref, onMounted } from 'vue';
+import { fetchDevices } from '@/api/devices';
 
 import TheNavbar from '../components/TheNavbar.vue';
 
 export default {
-  name: 'Home',
+  name: 'Devices',
   components: {
     TheNavbar,
   },
   setup() {
+    const devices = ref([]);
+    const getDevices = async () => {
+      const response = await fetchDevices();
+      devices.value = response.data;
+    };
+
+    onMounted(() => {
+      getDevices();
+    });
+
     return {
-      people,
+      devices,
     };
   },
 };

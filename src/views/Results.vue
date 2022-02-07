@@ -19,11 +19,11 @@
 <script>
 import { ref, onMounted } from 'vue';
 
-import { fetchProducts } from '@/api/devices';
+import { fetchDevices } from '@/api/devices';
 import Search from '@/components/Search.vue';
 
 export default {
-  name: 'Home',
+  name: 'Results',
   components: {
     Categories,
     Search,
@@ -32,7 +32,7 @@ export default {
   setup() {
     const products = ref([]);
     const getProducts = async () => {
-      products.value = await fetchProducts();
+      products.value = await fetchDevices();
     };
 
     onMounted(getProducts);

@@ -7,19 +7,65 @@
       <greeting />
       <!-- status -->
       <div class="card col-span-1">
-        <div class="card-body">
-          <h5 class="uppercase text-xs tracking-wider font-extrabold">
-            Your target
-          </h5>
-          <h1 class="capitalize text-lg mt-1 mb-1">
-            $<span class="num-3">684</span>
-            <span class="text-xs tracking-widest font-extrabold">
-              / <span class="num-2">29</span> orders</span
+        <div class="card-body mb-auto">
+          <div class="flex flex-row items-center justify-between">
+            <div class="flex-1 justify-between">
+              <div class="mb-10">
+                <span
+                  class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >{{ month }} Sales</span
+                >
+                <p
+                  class="capitalize text-lg text-gray-700 font-semibold mt-2 mb-0"
+                >
+                  Kshs
+                </p>
+                <span class="mt-2 font-extrabold text-2xl text-teal-400">
+                  40,000
+                </span>
+                <span class="mt-2 font-semibold text-lg text-gray-700"
+                  >/ 150,000</span
+                >
+                <p class="mt-2 mb-2 text-sm text-gray-500">
+                  You are <span class="num-3 font-medium">57.6%</span> towards
+                  your monthly target
+                </p>
+                <a href="#" class="btn-shadow py-3 text-xs text-blue-600">
+                  Edit target
+                </a>
+              </div>
+
+              <div class="mt-auto">
+                <span
+                  class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >Last month</span
+                >
+                <div class="mt-1 mb-1">
+                  <span class="text-md text-gray-700 font-medium"> Kshs</span>
+                  <span class="text-xl text-gray-700 font-bold mr-2">
+                    150,000</span
+                  >
+                  <span
+                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                  >
+                    50% ^</span
+                  >
+                  <p class="mt-2 mb-2 text-sm text-gray-500">
+                    Congratulations on your growth
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="flex-1 ml-10 w-32 h-32 lg:w-auto lg:h-auto hidden lg:flex overflow-hidden"
             >
-          </h1>
-          <p class="capitalize text-xs text-gray-500">
-            ( $<span class="num-2">21</span> in the last year )
-          </p>
+              <img
+                class="object-cover"
+                :src="require('@/assets/graphics/growing.svg')"
+              />
+            </div>
+          </div>
         </div>
       </div>
       <!-- status -->
@@ -34,7 +80,7 @@
       <div class="card mt-6">
         <router-link
           :to="{ name: 'devices', query: { item: 'laptops' } }"
-          class="card-body flex items-center"
+          class="card-body flex items-center hover:shadow-lg"
         >
           <div class="px-3 py-2 rounded bg-indigo-600 text-white mr-3">
             <svg
@@ -172,75 +218,68 @@
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Name
+                    Date
                   </th>
                   <th
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Title
+                    Item
                   </th>
                   <th
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Status
+                    Payment Method
                   </th>
                   <th
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Role
+                    Transaction code
                   </th>
-                  <th scope="col" class="relative px-6 py-3">
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Amount
+                  </th>
+                  <!-- <th scope="col" class="relative px-6 py-3">
                     <span class="sr-only">Edit</span>
-                  </th>
+                  </th> -->
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
                 <tr>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                      <div class="flex-shrink-0 h-10 w-10">
-                        <img
-                          class="h-10 w-10 rounded-full"
-                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
-                          alt=""
-                        />
-                      </div>
-                      <div class="ml-4">
-                        <div class="text-sm font-medium text-gray-900">
-                          Jane Cooper
-                        </div>
-                        <div class="text-sm text-gray-500">
-                          jane.cooper@example.com
-                        </div>
-                      </div>
-                    </div>
+                    <div class="text-sm">07/12/2021</div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">
-                      Regional Paradigm Technician
+                    <div class="text-md font-medium text-gray-900">
+                      HP EliteBook 840 G1
                     </div>
-                    <div class="text-sm text-gray-500">Optimization</div>
+                    <div class="text-sm text-gray-500">Laptop</div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <span
                       class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
                     >
-                      Active
+                      Cash
                     </span>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    Admin
+                    N/A
                   </td>
-                  <td
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    Ksh. 40,000
+                  </td>
+                  <!-- <td
                     class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
                   >
                     <a href="#" class="text-indigo-600 hover:text-indigo-900"
                       >Edit</a
                     >
-                  </td>
+                  </td> -->
                 </tr>
 
                 <!-- More people... -->
@@ -254,39 +293,45 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
+
 import TheNavbar from '../components/TheNavbar.vue';
 import StatsCard from '../components/StatsCard.vue';
 import Greeting from '../components/Greeting.vue';
 
 export default {
+  name: 'Home',
   components: {
     TheNavbar,
     StatsCard,
     Greeting,
   },
-};
-/* import { ref, onMounted } from 'vue';
-
-import { fetchProducts } from '@/api/devices';
-import Search from '@/components/Search.vue';
-
-export default {
-  name: 'Home',
-  components: {
-    Search,
-  },
   setup() {
-    const devices = ref([]);
-    const getDevices = async () => {
-      devices.value = await fetchProducts();
+    const month = ref('');
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    const setMonth = () => {
+      month.value = monthNames[new Date().getMonth()];
     };
 
-    onMounted(getProducts);
+    onMounted(setMonth);
 
     return {
-      devices,
-      getDevices,
+      month,
     };
   },
-}; */
+};
 </script>

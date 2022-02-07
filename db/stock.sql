@@ -64,6 +64,20 @@ CREATE TABLE stock.accessories (
   FOREIGN KEY (product_type) REFERENCES stock.product_types (id)
 );
 
+CREATE TABLE stock.users (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  status VARCHAR(255) DEFAULT 'active',
+  role VARCHAR(255) DEFAULT 'user',
+  sales_target DECIMAL(10,2),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP
+);
+
 CREATE TABLE stock.sales (
   id SERIAL PRIMARY KEY,
   product_id INTEGER NOT NULL,
@@ -74,20 +88,9 @@ CREATE TABLE stock.sales (
   payment_method VARCHAR(255) NOT NULL,
   transaction_code VARCHAR(255) UNIQUE,
   shop shop,
+  user_id INTEGER NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
-  FOREIGN KEY (product_type) REFERENCES stock.product_types (id)
-);
-
-CREATE TABLE stock.users (
-  id SERIAL PRIMARY KEY,
-  first_name VARCHAR(255) NOT NULL,
-  last_name VARCHAR(255) NOT NULL,
-  username VARCHAR(255) NOT NULL UNIQUE,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  status VARCHAR(255) DEFAULT 'active',
-  role VARCHAR(255) DEFAULT 'user',
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP
+  FOREIGN KEY (product_type) REFERENCES stock.product_types (id),
+  FOREIGN KEY (user_id) REFERENCES stock.users (id)
 );

@@ -23,15 +23,16 @@
     </div>
     <div class="sidebar-content px-4 py-6 my-auto">
       <ul class="flex flex-col w-full">
-        <li class="my-px">
+        <li class="my-px text-center">
           <router-link
             :to="{ name: 'Home' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300"
-            :class="{ 'text-gray-700 bg-gray-100': $route.name === 'Home' }"
+            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-100 hover:bg-gray-100 hover:text-gray-700"
+            :class="{
+              'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white':
+                $route.name === 'Home',
+            }"
           >
-            <span
-              class="flex items-center justify-center text-lg text-gray-400"
-            >
+            <span class="flex items-center justify-center text-lg">
               <svg
                 fill="none"
                 stroke-linecap="round"
@@ -109,57 +110,95 @@
           </router-link>
         </li>
         <li class="my-px">
-          <router-link
-            :to="{ name: 'repairs' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
-            :class="{
-              'text-gray-700 bg-gray-100': $route.name === 'repairs',
-            }"
-          >
-            <span
-              class="flex items-center justify-center text-lg text-gray-400"
+          <popover class="relative">
+            <popover-button
+              class="flex flex-row items-center h-10 w-full px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
+              :class="{
+                'text-gray-700 bg-gray-100': $route.name === 'new_device',
+              }"
             >
-              <svg
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="h-6 w-6"
+              <span
+                class="flex items-center justify-center text-lg text-green-400"
               >
-                <path
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                />
-              </svg>
-            </span>
-            <span class="ml-3">Repairs</span>
-          </router-link>
-        </li>
-        <li class="my-px">
-          <a
-            href="#"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
-          >
-            <span
-              class="flex items-center justify-center text-lg text-green-400"
+                <svg
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="h-6 w-6"
+                >
+                  <path
+                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </span>
+              <span class="ml-3">Add new</span>
+            </popover-button>
+
+            <popover-panel
+              class="absolute z-10 text-gray-500 bg-gray-100 rounded-lg w-full"
             >
-              <svg
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="h-6 w-6"
-              >
-                <path
-                  d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </span>
-            <span class="ml-3">Add new</span>
-          </a>
+              <li class="my-px">
+                <router-link
+                  :to="{ name: 'new_device' }"
+                  class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 hover:bg-gray-900 hover:text-gray-300"
+                  :class="{
+                    'text-gray-700 bg-gray-100': $route.name === 'new_device',
+                  }"
+                >
+                  <span
+                    class="flex items-center justify-center ml-7 text-lg text-gray-400"
+                  >
+                    <svg
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      class="h-6 w-6"
+                    >
+                      <path
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="ml-3">Device</span>
+                </router-link>
+              </li>
+              <li class="my-px">
+                <router-link
+                  :to="{ name: 'new_accessory' }"
+                  class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                  :class="{
+                    'text-gray-700 bg-gray-100':
+                      $route.name === 'new_accessory',
+                  }"
+                >
+                  <span
+                    class="flex items-center justify-center ml-7 text-lg text-gray-400"
+                  >
+                    <svg
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      class="h-6 w-6"
+                    >
+                      <path
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  </span>
+                  <span class="ml-3">Accessory</span>
+                </router-link>
+              </li>
+            </popover-panel>
+          </popover>
         </li>
         <li class="my-px">
           <span
@@ -340,3 +379,16 @@
     </div>
   </aside>
 </template>
+
+<script>
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
+
+export default {
+  name: 'Sidebar',
+  components: {
+    Popover,
+    PopoverButton,
+    PopoverPanel,
+  },
+};
+</script>

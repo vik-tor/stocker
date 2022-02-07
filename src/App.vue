@@ -5,7 +5,7 @@
       class="main flex flex-col flex-grow lg:ml-64 transition-all duration-150 ease-in lg:px-8"
     >
       <router-view />
-      <footer class="footer px-4 py-6">
+      <footer class="footer px-4 py-6 sat">
         <div class="footer-content">
           <p class="text-sm text-gray-600 text-center">
             © Brandname 2020. All rights reserved.
@@ -45,5 +45,36 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.saturate-0 {
+  filter: saturate(0);
+}
+.saturate-50 {
+  filter: saturate(0.5);
+}
+.saturate-100 {
+  filter: saturate(1);
+}
+.saturate-150 {
+  filter: saturate(1.5);
+}
+.saturate-200 {
+  filter: saturate(2);
+}
+.grayscale-0 {
+  filter: grayscale(0);
+}
+.grayscale-50 {
+  filter: grayscale(0.5);
+}
+.grayscale-100 {
+  filter: grayscale(1);
+}
+.grayscale-150 {
+  filter: grayscale(1.5);
+}
+.grayscale-200 {
+  filter: grayscale(2);
 }
 </style>

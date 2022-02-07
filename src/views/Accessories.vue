@@ -116,18 +116,8 @@
 </template>
 
 <script>
-const people = [
-  {
-    name: 'Jane Cooper',
-    title: 'Regional Paradigm Technician',
-    department: 'Optimization',
-    role: 'Admin',
-    email: 'jane.cooper@example.com',
-    image:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-  },
-  // More people...
-];
+import { ref, onMounted } from 'vue';
+import { fetchAccessories } from '@/api/accessories';
 
 import TheNavbar from '../components/TheNavbar.vue';
 
@@ -137,8 +127,18 @@ export default {
     TheNavbar,
   },
   setup() {
+    const accessories = ref([]);
+    const getAccessories = async () => {
+      const response = await fetchAccessories();
+      accessories.value = response.data;
+    };
+
+    onMounted(() => {
+      getAccessories();
+    });
+
     return {
-      people,
+      accessories,
     };
   },
 };

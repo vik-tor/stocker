@@ -41,12 +41,12 @@ const routes = [
       import(/* webpackChunkName: "repairs" */ "./views/Repairs"),
   },
   {
-    path: "/device",
+    path: "/new/device",
     name: "new_device",
     component: () => import(/* webpackChunkName: "new_device" */ "./views/NewDevice"),
   },
   {
-    path: "/accessory",
+    path: "/new/accessory",
     name: "new_accessory",
     component: () => import(/* webpackChunkName: "new_accessory" */ "./views/NewAccessory"),
   },
