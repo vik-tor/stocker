@@ -26,11 +26,12 @@
         <li class="my-px text-center">
           <router-link
             :to="{ name: 'Home' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-100 hover:bg-gray-100 hover:text-gray-700"
-            :class="{
-              'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white':
-                $route.name === 'Home',
-            }"
+            class="flex flex-row items-center h-10 px-3 rounded-lg"
+            :class="[
+              $route.name === 'Home'
+                ? 'text-white bg-red-800 font-semibold hover:bg-red-600 hover:text-white'
+                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
+            ]"
           >
             <span class="flex items-center justify-center text-lg">
               <svg
@@ -58,8 +59,12 @@
         <li class="my-px">
           <router-link
             :to="{ name: 'devices' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
-            :class="{ 'text-gray-700 bg-gray-100': $route.name === 'devices' }"
+            class="flex flex-row items-center h-10 px-3 rounded-lg"
+            :class="[
+              $route.name === 'devices'
+                ? 'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white'
+                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
+            ]"
           >
             <span
               class="flex items-center justify-center text-lg text-gray-400"
@@ -84,10 +89,12 @@
         <li class="my-px">
           <router-link
             :to="{ name: 'accessories' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
-            :class="{
-              'text-gray-700 bg-gray-100': $route.name === 'accessories',
-            }"
+            class="flex flex-row items-center h-10 px-3 rounded-lg"
+            :class="[
+              $route.name === 'accessories'
+                ? 'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white'
+                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
+            ]"
           >
             <span
               class="flex items-center justify-center text-lg text-gray-400"
@@ -110,12 +117,18 @@
           </router-link>
         </li>
         <li class="my-px">
-          <popover class="relative">
+          <popover class="relative" v-slot="{ open }">
             <popover-button
-              class="flex flex-row items-center h-10 w-full px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
-              :class="{
-                'text-gray-700 bg-gray-100': $route.name === 'new_device',
-              }"
+              class="flex flex-row items-center h-10 w-full px-3"
+              :class="[
+                open && $route.name === ('new_device' || 'new_accessory')
+                  ? 'text-white bg-red-800 font-semibold rounded-t-md'
+                  : open && !$route.name === ('new_device' || 'new_accessory')
+                  ? 'text-gray-100 bg-yellow-200 font-semibold rounded-t-md'
+                  : !open && $route.name === ('new_device' || 'new_accessory')
+                  ? 'text-white bg-red-800 font-semibold hover:bg-red-600 hover:text-white rounded-md'
+                  : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700 rounded-md',
+              ]"
             >
               <span
                 class="flex items-center justify-center text-lg text-green-400"
@@ -138,15 +151,17 @@
             </popover-button>
 
             <popover-panel
-              class="absolute z-10 text-gray-500 bg-gray-100 rounded-lg w-full"
+              class="absolute z-10 text-gray-500 bg-gray-400 rounded-b-lg w-full"
+              v-slot="{ close }"
             >
               <li class="my-px">
                 <router-link
                   :to="{ name: 'new_device' }"
-                  class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 hover:bg-gray-900 hover:text-gray-300"
+                  class="flex flex-row items-center h-10 px-3 text-gray-700 hover:bg-gray-900 hover:text-gray-300"
                   :class="{
                     'text-gray-700 bg-gray-100': $route.name === 'new_device',
                   }"
+                  @click="close"
                 >
                   <span
                     class="flex items-center justify-center ml-7 text-lg text-gray-400"
@@ -176,6 +191,7 @@
                     'text-gray-700 bg-gray-100':
                       $route.name === 'new_accessory',
                   }"
+                  @click="close"
                 >
                   <span
                     class="flex items-center justify-center ml-7 text-lg text-gray-400"
@@ -208,8 +224,12 @@
         <li class="my-px">
           <router-link
             :to="{ name: 'sales' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
-            :class="{ 'text-gray-700 bg-gray-100': $route.name === 'sales' }"
+            class="flex flex-row items-center h-10 px-3 rounded-lg"
+            :class="[
+              $route.name === 'sales'
+                ? 'text-white bg-red-800 font-semibold hover:bg-red-600 hover:text-white'
+                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
+            ]"
           >
             <span
               class="flex items-center justify-center text-lg text-gray-400"
@@ -238,8 +258,12 @@
         <li class="my-px">
           <router-link
             :to="{ name: 'users' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
-            :class="{ 'text-gray-700 bg-gray-100': $route.name === 'users' }"
+            class="flex flex-row items-center h-10 px-3 rounded-lg"
+            :class="[
+              $route.name === 'users'
+                ? 'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white'
+                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
+            ]"
           >
             <span
               class="flex items-center justify-center text-lg text-gray-400"

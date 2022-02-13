@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@headlessui/vue': ^1.4.2
+  '@heroicons/vue': ^1.0.5
   '@tailwindcss/postcss7-compat': ^2.0.2
   '@vue/cli-service': ^4.5.14
   '@vue/reactivity': ^3.2.20
@@ -38,6 +39,7 @@ specifiers:
 
 dependencies:
   '@headlessui/vue': 1.4.2_vue@3.2.26
+  '@heroicons/vue': 1.0.5_vue@3.2.26
   '@tailwindcss/postcss7-compat': 2.2.17
   '@vue/reactivity': 3.2.26
   autoprefixer: 9.8.8
@@ -137,6 +139,14 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       vue: ^3.0.0
+    dependencies:
+      vue: 3.2.26
+    dev: false
+
+  /@heroicons/vue/1.0.5_vue@3.2.26:
+    resolution: {integrity: sha512-idWtp20Fjr7mqnD7EdGDUDi83oWHnx3SwyuQY6GZyF33OApzpBOLxz7xa4t6rPOddGz9tI5RGnndLk+ake7ijQ==}
+    peerDependencies:
+      vue: '>= 3'
     dependencies:
       vue: 3.2.26
     dev: false
