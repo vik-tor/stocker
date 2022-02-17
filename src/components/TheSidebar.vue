@@ -180,6 +180,35 @@
                       />
                     </svg>
                   </span>
+                  <span class="ml-3">Import from file</span>
+                </router-link>
+              </li>
+              <li class="my-px">
+                <router-link
+                  :to="{ name: 'new_device' }"
+                  class="flex flex-row items-center h-10 px-3 text-gray-700 hover:bg-gray-900 hover:text-gray-300"
+                  :class="{
+                    'text-gray-700 bg-gray-100': $route.name === 'new_device',
+                  }"
+                  @click="close"
+                >
+                  <span
+                    class="flex items-center justify-center ml-7 text-lg text-gray-400"
+                  >
+                    <svg
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      class="h-6 w-6"
+                    >
+                      <path
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  </span>
                   <span class="ml-3">Device</span>
                 </router-link>
               </li>

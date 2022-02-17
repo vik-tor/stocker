@@ -135,95 +135,207 @@
                 </div>
               </div>
 
-              <div class="grid">
-                <label
-                  for="about"
-                  class="block text-sm font-medium text-gray-700"
-                >
-                  About
-                </label>
-                <div class="mt-1">
-                  <textarea
-                    id="about"
-                    name="about"
-                    rows="3"
-                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                    placeholder="you@example.com"
-                  />
-                </div>
-                <p class="mt-2 text-sm text-gray-500">
-                  Brief description for your profile. URLs are hyperlinked.
-                </p>
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium text-gray-700">
-                  Photo
-                </label>
-                <div class="mt-1 flex items-center">
-                  <span
-                    class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100"
+              <div class="grid grid-cols-4 gap-6">
+                <div class="col-span-2">
+                  <label
+                    for="brand"
+                    class="block text-sm font-medium text-gray-700"
                   >
-                    <svg
-                      class="h-full w-full text-gray-300"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
+                    Processor
+                  </label>
+                  <div class="mt-1 flex rounded-md shadow-sm">
+                    <select
+                      name="processor"
+                      id="processor"
+                      class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded shadow leading-tight appearance-none bg-white border hover:border-gray-500 px-4 py-2 pr-8"
                     >
-                      <path
-                        d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"
-                      />
-                    </svg>
-                  </span>
-                  <button
-                    type="button"
-                    class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Change
-                  </button>
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium text-gray-700">
-                  Cover photo
-                </label>
-                <div
-                  class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
-                >
-                  <div class="space-y-1 text-center">
-                    <svg
-                      class="mx-auto h-12 w-12 text-gray-400"
-                      stroke="currentColor"
-                      fill="none"
-                      viewBox="0 0 48 48"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                    <div class="flex text-sm text-gray-600">
-                      <label
-                        for="file-upload"
-                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                      >
-                        <span>Upload a file</span>
-                        <input
-                          id="file-upload"
-                          name="file-upload"
-                          type="file"
-                          class="sr-only"
-                        />
-                      </label>
-                      <p class="pl-1">or drag and drop</p>
-                    </div>
-                    <p class="text-xs text-gray-500">
-                      PNG, JPG, GIF up to 10MB
-                    </p>
+                      <option class="text-gray-500">Select...</option>
+                      <option value="hp">Intel Celeron</option>
+                      <option>Intel Pentium</option>
+                      <option>Intel Core i3</option>
+                      <option>Intel Core i5</option>
+                      <option>Intel Core i7</option>
+                      <option>AMD Ryzen</option>
+                    </select>
                   </div>
+                </div>
+                <div class="col-span-2">
+                  <label
+                    for="processor_speed"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    Processor Speed
+                  </label>
+                  <div class="mt-1 shadow-sm">
+                    <input
+                      type="number"
+                      name="processor_speed"
+                      id="processor_speed"
+                      class="focus:ring-indigo-500 rounded-md focus:border-indigo-500 block w-full sm:text-sm shadow border border-gray-300 px-4 py-2 pr-8 hover:border-gray-500"
+                      placeholder="e.g. EliteBook 850 G1"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-4 gap-6 mt-2">
+                <div class="col-span-1">
+                  <label
+                    for="ram"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    RAM
+                  </label>
+                  <div class="mt-1 border-gray-500">
+                    <input
+                      type="number"
+                      name="ram"
+                      id="ram"
+                      class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm shadow rounded-md border border-gray-300 px-4 py-2 pr-8 hover:border-gray-500"
+                      placeholder="CND-XXXX"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-span-2">
+                  <label
+                    for="storage_size"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    Storage
+                  </label>
+                  <div class="mt-1 border-gray-500">
+                    <input
+                      type="number"
+                      name="storage_size"
+                      id="storage_size"
+                      class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm shadow rounded-md border border-gray-300 px-4 py-2 pr-8 hover:border-gray-500"
+                      placeholder="Good, faulty, scratches on screen..."
+                    />
+                  </div>
+                </div>
+
+                <div class="col-span-1">
+                  <label
+                    for="storage_type"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    Storage Type
+                  </label>
+                  <div class="mt-1 flex rounded-md shadow-sm">
+                    <select
+                      name="storage_type"
+                      id="storage_type"
+                      class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded shadow leading-tight appearance-none bg-white border hover:border-gray-500 px-4 py-2 pr-8"
+                    >
+                      <option class="text-gray-500">Select...</option>
+                      <option value="hdd">HDD</option>
+                      <option value="ssd">SSD</option>
+                      <option value="emmc">eMMC</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-4 gap-6">
+                <div class="col-span-2">
+                  <label
+                    for="screen_size"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    Screen Size
+                  </label>
+                  <div class="mt-1 shadow-sm">
+                    <input
+                      type="number"
+                      name="screen_size"
+                      id="screen_size"
+                      class="focus:ring-indigo-500 rounded-md focus:border-indigo-500 block w-full sm:text-sm shadow border border-gray-300 px-4 py-2 pr-8 hover:border-gray-500"
+                      placeholder="e.g. EliteBook 850 G1"
+                    />
+                  </div>
+                </div>
+                <div class="col-span-2">
+                  <label
+                    for="graphics"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    Graphics
+                  </label>
+                  <div class="mt-1 flex rounded-md shadow-sm">
+                    <select
+                      name="graphics_type"
+                      id="graphics"
+                      class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded shadow leading-tight appearance-none bg-white border hover:border-gray-500 px-4 py-2 pr-8"
+                    >
+                      <option class="text-gray-500">Select...</option>
+                      <option value="hp">Intel HD/UHD</option>
+                      <option value="amd">AMD/ATI Radeon</option>
+                      <option value="nvidia">Nvidia GeForce/GTX/RTX</option>
+                      <option value="apple">Apple Metal</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-4 gap-6">
+                <div class="col-span-2">
+                  <label
+                    for="screen_size"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    Main Camera
+                  </label>
+                  <div class="mt-1 shadow-sm">
+                    <input
+                      type="number"
+                      name="screen_size"
+                      id="screen_size"
+                      class="focus:ring-indigo-500 rounded-md focus:border-indigo-500 block w-full sm:text-sm shadow border border-gray-300 px-4 py-2 pr-8 hover:border-gray-500"
+                      placeholder="e.g. EliteBook 850 G1"
+                    />
+                  </div>
+                </div>
+                <div class="col-span-2">
+                  <label
+                    for="screen_size"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    Selfie Camera
+                  </label>
+                  <div class="mt-1 shadow-sm">
+                    <input
+                      type="number"
+                      name="screen_size"
+                      id="screen_size"
+                      class="focus:ring-indigo-500 rounded-md focus:border-indigo-500 block w-full sm:text-sm shadow border border-gray-300 px-4 py-2 pr-8 hover:border-gray-500"
+                      placeholder="e.g. EliteBook 850 G1"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-span-1">
+                <label class="block text-sm font-medium text-gray-700"
+                  >Shop</label
+                >
+                <div class="mt-1 mr-2 inline-block align-middle py-2">
+                  <input type="radio" name="shop" id="shop_a" value="a" />
+                  <label class="ml-2 text-sm text-gray-500" for="shop_a"
+                    >Shop A</label
+                  >
+                </div>
+
+                <div class="mt-1 ml-2 inline-block align-middle py-2">
+                  <input
+                    type="radio"
+                    name="device_type"
+                    id="shop_f"
+                    value="f"
+                  />
+                  <label class="ml-2 text-sm text-gray-500" for="shop_f"
+                    >Shop F</label
+                  >
                 </div>
               </div>
             </div>
