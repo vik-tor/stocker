@@ -1,10 +1,10 @@
 <template>
   <header class="header py-4 px-4">
     <div class="header-content flex items-center flex-row">
-      <h1 class="font-bold capitalize text-2xl text-gray-700 lg:mr-10">
+      <h1 class="font-bold capitalize text-2xl text-gray-900 lg:mr-10">
         {{ $route.name }}
       </h1>
-      <form action="#" class="lg:ml-20">
+      <!-- <form action="#" class="lg:ml-20">
         <div class="hidden md:flex relative">
           <div
             class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"
@@ -48,7 +48,7 @@
             </svg>
           </a>
         </div>
-      </form>
+      </form> -->
     </div>
   </header>
 </template>

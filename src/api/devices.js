@@ -12,4 +12,40 @@ const fetchDevice = async (id) => {
   return res.data;
 };
 
-export { fetchDevices, fetchDevice };
+const fetchProcessors = async () => {
+  let processors = [
+    {
+      id: 1,
+      brand: "intel",
+      model: "celeron"
+    },
+    {
+      id: 2,
+      brand: "intel",
+      model: "pentium"
+    },
+    {
+      id: 3,
+      brand: "intel",
+      model: "core i3"
+    },
+    {
+      id: 4,
+      brand: "intel",
+      model: "core i5"
+    },
+    {
+      id: 5,
+      brand: "intel",
+      model: "core i7"
+    },
+    {
+      id: 6,
+      brand: "amd",
+      model: "a10"
+    },
+  ];
+  return processors;
+};
+
+export { fetchDevices, fetchDevice, fetchProcessors };

@@ -41,6 +41,11 @@ const routes = [
       import(/* webpackChunkName: "repairs" */ "./views/Repairs"),
   },
   {
+    path: "/new/import",
+    name: "import",
+    component: () => import(/* webpackChunkName: "import" */ "./views/Import"),
+  },
+  {
     path: "/new/device",
     name: "new_device",
     component: () => import(/* webpackChunkName: "new_device" */ "./views/NewDevice"),
@@ -66,7 +71,6 @@ const routes = [
   {
     path: "/profile",
     name: "profile",
-    redirect: "/profile",
     component: () => import(/* webpackChunkName: "profile" */ "./views/Profile"),
   },
   {

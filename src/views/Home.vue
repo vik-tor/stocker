@@ -1,20 +1,27 @@
 <template>
   <the-navbar />
-  <div class="main-content flex flex-col flex-grow p-4">
+  <div class="main-content flex flex-col px-4">
     <!-- <stats-card /> -->
     <br />
-    <div class="grid grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <greeting />
       <!-- status -->
       <div class="card col-span-1">
         <div class="card-body mb-auto">
-          <div class="flex flex-row items-center justify-between">
+          <div class="flex flex-col items-left justify-between">
+            <div class="flex-1">
+              <p
+                class="mb-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                {{ month }} Sales
+              </p>
+              <img
+                class="object-cover text-center w-auto h-28"
+                :src="require('@/assets/graphics/growing.svg')"
+              />
+            </div>
             <div class="flex-1 justify-between">
-              <div class="mb-10">
-                <span
-                  class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >{{ month }} Sales</span
-                >
+              <div class="mt-10">
                 <p
                   class="capitalize text-lg text-gray-700 font-semibold mt-2 mb-0"
                 >
@@ -28,14 +35,14 @@
                 >
                 <p class="mt-2 mb-2 text-sm text-gray-500">
                   You are <span class="num-3 font-medium">57.6%</span> towards
-                  your monthly target
+                  this month's target
                 </p>
                 <a href="#" class="btn-shadow py-3 text-xs text-blue-600">
                   Edit target
                 </a>
               </div>
 
-              <div class="mt-auto">
+              <!--               <div class="mt-auto">
                 <span
                   class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >Last month</span
@@ -54,16 +61,7 @@
                     Congratulations on your growth
                   </p>
                 </div>
-              </div>
-            </div>
-
-            <div
-              class="flex-1 ml-10 w-32 h-32 lg:w-auto lg:h-auto hidden lg:flex overflow-hidden"
-            >
-              <img
-                class="object-cover"
-                :src="require('@/assets/graphics/growing.svg')"
-              />
+              </div> -->
             </div>
           </div>
         </div>
@@ -75,7 +73,7 @@
 
     <h3 class="font-semibold text-xl text-gray-700">Browse</h3>
 
-    <div class="grid grid-cols-5 gap-6 xl:grid-cols-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 xl:grid-cols-4">
       <!-- card -->
       <div class="card mt-6">
         <router-link
@@ -204,7 +202,6 @@
 
     <h3 class="font-semibold text-xl text-gray-700 mt-4">Your sales</h3>
 
-    <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="flex flex-col">
       <div class="mt-6 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

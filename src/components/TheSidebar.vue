@@ -1,23 +1,23 @@
 <template>
   <aside
-    class="sidebar w-64 lg:fixed h-full md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-black flex flex-col"
+    class="sidebar w-64 lg:fixed h-full lg:shadow-lg ease-in bg-black flex-col"
   >
     <div class="sidebar-header flex items-center justify-center py-4 lg:mt-6">
       <div class="inline-flex">
         <router-link
           :to="{ name: 'Home' }"
-          class="inline-flex flex-col items-center gap-2 text-center"
+          class="inline-flex flex-col items-left text-left"
         >
           <img
             :src="require('@/assets/logo.png')"
-            width="140"
+            width="160"
             class="text-red-400 mb-2"
             alt=""
           />
-          <span class="leading-10 text-gray-100 text-2xl font-bold"
+          <!-- <span class="leading-10 text-gray-100 text-2xl font-bold"
             >Rikel
           </span>
-          <span class="text-gray-100 text-xl">Technologies</span>
+          <span class="text-gray-100 text-xl">Technologies</span> -->
         </router-link>
       </div>
     </div>
@@ -116,17 +116,24 @@
             <span class="ml-3">Accessories</span>
           </router-link>
         </li>
+        <hr class="border border-b-0 border-t-1 border-gray-500 mt-2 mb-4" />
         <li class="my-px">
           <popover class="relative" v-slot="{ open }">
             <popover-button
               class="flex flex-row items-center h-10 w-full px-3"
               :class="[
-                open && $route.name === ('new_device' || 'new_accessory')
+                (open && $route.name == 'new_accessory') ||
+                (open && $route.name == 'new_device') ||
+                (open && $route.name == 'import')
                   ? 'text-white bg-red-800 font-semibold rounded-t-md'
-                  : open && !$route.name === ('new_device' || 'new_accessory')
-                  ? 'text-gray-100 bg-yellow-200 font-semibold rounded-t-md'
-                  : !open && $route.name === ('new_device' || 'new_accessory')
-                  ? 'text-white bg-red-800 font-semibold hover:bg-red-600 hover:text-white rounded-md'
+                  : (open && $route.name !== 'new_accessory') ||
+                    (open && $route.name !== 'new_device') ||
+                    (open && $route.name !== 'import')
+                  ? 'text-gray-800 bg-gray-100 font-medium rounded-t-md'
+                  : (!open && $route.name == 'new_accessory') ||
+                    (!open && $route.name == 'new_device') ||
+                    (!open && $route.name == 'import')
+                  ? 'text-white bg-red-600 font-semibold hover:bg-red-700 hover:text-white rounded-md'
                   : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700 rounded-md',
               ]"
             >
@@ -151,19 +158,20 @@
             </popover-button>
 
             <popover-panel
-              class="absolute z-10 text-gray-500 bg-gray-400 rounded-b-lg w-full"
+              class="absolute z-10 text-gray-500 bg-gray-200 shadow-lg rounded-b-md w-full"
               v-slot="{ close }"
             >
               <li class="my-px">
                 <router-link
-                  :to="{ name: 'new_device' }"
-                  class="flex flex-row items-center h-10 px-3 text-gray-700 hover:bg-gray-900 hover:text-gray-300"
+                  :to="{ name: 'import' }"
+                  class="flex flex-row items-center py-2 px-3 text-gray-600 hover:bg-gray-100 hover:text-gray-800"
                   :class="{
-                    'text-gray-700 bg-gray-100': $route.name === 'new_device',
+                    'text-red-800 font-medium bg-gray-100':
+                      $route.name == 'import',
                   }"
                   @click="close"
                 >
-                  <span
+                  <!-- <span
                     class="flex items-center justify-center ml-7 text-lg text-gray-400"
                   >
                     <svg
@@ -179,20 +187,21 @@
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                  </span>
-                  <span class="ml-3">Import from file</span>
+                  </span> -->
+                  <span class="ml-9">Import from file</span>
                 </router-link>
               </li>
               <li class="my-px">
                 <router-link
                   :to="{ name: 'new_device' }"
-                  class="flex flex-row items-center h-10 px-3 text-gray-700 hover:bg-gray-900 hover:text-gray-300"
+                  class="flex flex-row items-center py-2 px-3 text-gray-600 hover:bg-gray-100 hover:text-gray-800"
                   :class="{
-                    'text-gray-700 bg-gray-100': $route.name === 'new_device',
+                    'text-red-800 font-medium bg-gray-100':
+                      $route.name === 'new_device',
                   }"
                   @click="close"
                 >
-                  <span
+                  <!-- <span
                     class="flex items-center justify-center ml-7 text-lg text-gray-400"
                   >
                     <svg
@@ -208,21 +217,21 @@
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                  </span>
-                  <span class="ml-3">Device</span>
+                  </span> -->
+                  <span class="ml-9">Device</span>
                 </router-link>
               </li>
               <li class="my-px">
                 <router-link
                   :to="{ name: 'new_accessory' }"
-                  class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                  class="flex flex-row items-center py-2 px-3 text-gray-600 hover:bg-gray-100 hover:text-gray-800 rounded-b-md"
                   :class="{
-                    'text-gray-700 bg-gray-100':
+                    'text-red-800 font-medium bg-gray-100':
                       $route.name === 'new_accessory',
                   }"
                   @click="close"
                 >
-                  <span
+                  <!-- <span
                     class="flex items-center justify-center ml-7 text-lg text-gray-400"
                   >
                     <svg
@@ -238,8 +247,8 @@
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                  </span>
-                  <span class="ml-3">Accessory</span>
+                  </span> -->
+                  <span class="ml-9">Accessory</span>
                 </router-link>
               </li>
             </popover-panel>
@@ -394,7 +403,15 @@
     <div class="sidebar-footer px-4 py-6 mt-auto">
       <div class="flex flex-col w-full">
         <div class="my-px flex px-3">
-          <a href class="flex flex-row items-center">
+          <router-link
+            :to="{ name: 'profile' }"
+            class="flex flex-row items-center h-10 rounded-lg"
+            :class="[
+              $route.name == 'profile'
+                ? 'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white'
+                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
+            ]"
+          >
             <img
               :src="require('@/assets/images/graphics/user2.jpg')"
               alt
@@ -410,7 +427,7 @@
                 >Manager</span
               >
             </span>
-          </a>
+          </router-link>
         </div>
         <!-- <div class="my-px flex flex-row text-gray-200">
           <svg

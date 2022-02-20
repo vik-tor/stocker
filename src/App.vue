@@ -1,15 +1,14 @@
-<template class="flex flex-row min-h-screen bg-gray-100 text-gray-800">
+<template>
   <div class="flex flex-row min-h-screen bg-gray-100 text-gray-800">
-    <the-sidebar />
+    <the-sidebar class="hidden lg:flex" />
     <main
-      class="main flex flex-col flex-grow lg:ml-64 transition-all duration-150 ease-in lg:px-8"
+      class="main flex flex-col flex-grow lg:ml-64 transition-all duration-150 ease-in px-3 md:px:6 lg:px-8"
     >
       <router-view />
       <footer class="footer px-4 py-6 sat">
         <div class="footer-content">
           <p class="text-sm text-gray-600 text-center">
-            © Brandname 2020. All rights reserved.
-            <a href="https://twitter.com/iaminos">by iAmine</a>
+            &copy; <span class="italic">Chiras</span>, 2022. All rights reserved
           </p>
         </div>
       </footer>
