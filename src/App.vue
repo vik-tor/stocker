@@ -13,35 +13,10 @@
         </div>
       </footer>
     </main>
-    <Dialog :open="isOpen" @close="setIsOpen">
-      <dialog-overlay />
-
-      <dialog-title>Deactivate account</dialog-title>
-      <dialog-description>
-        This will permanently deactivate your account
-      </dialog-description>
-
-      <p>
-        Are you sure you want to deactivate your account? All of your data will
-        be permanently removed. This action cannot be undone.
-      </p>
-
-      <button @click="setIsOpen(false)">Deactivate</button>
-      <button @click="setIsOpen(false)">Cancel</button>
-    </Dialog>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-import { useCookie } from 'vue-cookie-next';
-import {
-  Dialog,
-  DialogOverlay,
-  DialogTitle,
-  DialogDescription,
-} from '@headlessui/vue';
-
 import TheNavbar from './components/TheNavbar.vue';
 import TheSidebar from './components/TheSidebar.vue';
 
@@ -49,22 +24,6 @@ export default {
   components: {
     TheNavbar,
     TheSidebar,
-    Dialog,
-    DialogOverlay,
-    DialogTitle,
-    DialogDescription,
-  },
-  setup() {
-    const cookie = useCookie;
-
-    let isOpen = ref(true);
-
-    return {
-      isOpen,
-      setIsOpen(value) {
-        isOpen.value = value;
-      },
-    };
   },
 };
 </script>

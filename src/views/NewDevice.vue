@@ -17,22 +17,107 @@
                   Brand
                 </label>
                 <div class="mt-1 flex rounded-md">
-                  <combobox
+                  <!-- <combobox
+                    as="div"
                     v-model="selectedBrand"
                     id="brand"
                     class="block w-full sm:text-sm border border-gray-200 focus:border-gray-800 rounded shadow appearance-none bg-transparent hover:border-gray-500 px-4 py-2 pr-8"
                   >
-                    <combobox-input @change="query = $event.target.value" />
+                    <combobox-input
+                      as="input"
+                      @change="query = $event.target.value"
+                    />
                     <combobox-options>
                       <combobox-option
+                        as="li"
+                        v-slot="{ active, selected }"
                         v-for="brand in filteredBrands"
                         :key="brand"
                         :value="brand"
                         class="capitalize"
+                        :class="{
+                          'bg-blue-500 text-white': active,
+                          'bg-white text-black': !active,
+                        }"
                       >
+                        <CheckIcon v-show="selected" />
                         {{ brand }}
                       </combobox-option>
                     </combobox-options>
+                  </combobox> -->
+                  <combobox v-model="selectedBrand">
+                    <div class="relative mt-1">
+                      <div
+                        class="relative w-full text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-teal-300 focus-visible:ring-offset-2 sm:text-sm overflow-hidden"
+                      >
+                        <combobox-input
+                          class="w-full border-none focus:ring-0 py-2 pl-3 pr-10 text-sm leading-5 text-gray-900"
+                          @change="query = $event.target.value"
+                        />
+                        <combobox-button
+                          class="absolute inset-y-0 right-0 flex items-center pr-2"
+                        >
+                          <SelectorIcon
+                            class="w-5 h-5 text-gray-400"
+                            aria-hidden="true"
+                          />
+                          Sel
+                        </combobox-button>
+                      </div>
+                      <transition-root
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                        @after-leave="query = ''"
+                      >
+                        <combobox-options
+                          class="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                        >
+                          <div
+                            v-if="filteredBrands.length === 0 && query !== ''"
+                            class="cursor-default select-none relative py-2 px-4 text-gray-700"
+                          >
+                            Nothing found.
+                          </div>
+
+                          <combobox-option
+                            v-for="brand in filteredBrands"
+                            as="template"
+                            :key="brand"
+                            :value="brand"
+                            v-slot="{ selected, active }"
+                          >
+                            <li
+                              class="cursor-default select-none relative py-2 pl-10 pr-4"
+                              :class="{
+                                'text-white bg-teal-600': active,
+                                'text-gray-900': !active,
+                              }"
+                            >
+                              <span
+                                class="block truncate"
+                                :class="{
+                                  'font-medium': selected,
+                                  'font-normal': !selected,
+                                }"
+                              >
+                                {{ brand }}
+                              </span>
+                              <span
+                                v-if="selected"
+                                class="absolute inset-y-0 left-0 flex items-center pl-3"
+                                :class="{
+                                  'text-white': active,
+                                  'text-teal-600': !active,
+                                }"
+                              >
+                                <CheckIcon class="w-5 h-5" aria-hidden="true" />
+                              </span>
+                            </li>
+                          </combobox-option>
+                        </combobox-options>
+                      </transition-root>
+                    </div>
                   </combobox>
                 </div>
               </div>
@@ -415,12 +500,21 @@ import { fetchProcessors } from '@/api/devices';
 import {
   Combobox,
   ComboboxInput,
+  ComboboxButton,
   ComboboxOptions,
   ComboboxOption,
+  TransitionRoot,
 } from '@headlessui/vue';
 
 export default {
-  components: { Combobox, ComboboxInput, ComboboxOptions, ComboboxOption },
+  components: {
+    Combobox,
+    ComboboxInput,
+    ComboboxButton,
+    ComboboxOptions,
+    ComboboxOption,
+    TransitionRoot,
+  },
 
   setup() {
     const processors = ref([]);
@@ -439,7 +533,7 @@ export default {
     const graphics_types = ref([
       'Intel HD / UHD',
       'AMD Radeon / Ryzen',
-      'nVidia GeForce / RTX / GTX',
+      'Nvidia GeForce / RTX / GTX',
       'Apple GPU',
     ]);
     const getProcessors = async () => {

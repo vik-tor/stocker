@@ -402,66 +402,7 @@
     </div>
     <div class="sidebar-footer px-4 py-6 mt-auto">
       <div class="flex flex-col w-full">
-        <div class="my-px">
-          <router-link
-            :to="{ name: 'signin' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg"
-            :class="[
-              $route.name === 'signin'
-                ? 'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white'
-                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
-            ]"
-          >
-            <span
-              class="flex items-center justify-center text-lg text-gray-400"
-            >
-              <svg
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="h-6 w-6"
-              >
-                <path
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                />
-              </svg>
-            </span>
-            <span class="ml-3">Sign In</span>
-          </router-link>
-        </div>
-        <div class="my-px">
-          <router-link
-            :to="{ name: 'signup' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg"
-            :class="[
-              $route.name === 'signup'
-                ? 'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white'
-                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
-            ]"
-          >
-            <span
-              class="flex items-center justify-center text-lg text-gray-400"
-            >
-              <svg
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="h-6 w-6"
-              >
-                <path
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                />
-              </svg>
-            </span>
-            <span class="ml-3">Sign up</span>
-          </router-link>
-        </div>
+        <div class="my-px"></div>
         <div class="my-px flex px-3">
           <router-link
             :to="{ name: 'profile' }"
@@ -511,14 +452,31 @@
 </template>
 
 <script>
-import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
+import { ref } from 'vue';
+import { useCookie } from 'vue-cookie-next';
 
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 export default {
   name: 'Sidebar',
   components: {
     Popover,
     PopoverButton,
     PopoverPanel,
+  },
+  setup() {
+    const cookie = useCookie;
+
+    let isOpen = ref(false);
+
+    return {
+      isOpen,
+      closeModal() {
+        isOpen.value = false;
+      },
+      openModal() {
+        isOpen.value = true;
+      },
+    };
   },
 };
 </script>
