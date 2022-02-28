@@ -20,7 +20,7 @@
                   type="text"
                   id="title"
                   v-model="accessory.title"
-                  class="shadow rounded-md block w-full sm:text-sm bg-gray-50 px-4 py-2 border hover:bg-gray-100 focus:bg-gray-100"
+                  class="shadow rounded-md block w-full sm:text-sm bg-gray-50 px-4 py-2 border hover:bg-gray-100 hover:border-gray-300 focus:bg-gray-100 focus:ring-gray-800"
                   placeholder="e.g. HP bluepin charger"
                 />
               </div>
@@ -44,7 +44,7 @@
                     type="number"
                     id="price"
                     v-model="accessory.price"
-                    class="shadow rounded-r-md block w-full sm:text-sm border border-l-0 bg-gray-50 px-4 py-2 hover:bg-gray-100 focus:bg-gray-100"
+                    class="shadow rounded-r-md block w-full sm:text-sm bg-gray-50 px-4 py-2 border hover:bg-gray-100 hover:border-gray-300 focus:bg-gray-100 focus:ring-gray-800"
                   />
                 </div>
               </div>
@@ -55,12 +55,12 @@
                 >
                   Quantity
                 </label>
-                <div class="mt-1 flex rounded-md shadow">
+                <div class="mt-1">
                   <input
                     type="number"
                     id="quantity"
                     v-model="accessory.quantity"
-                    class="focus:ring-indigo-500 rounded-md focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 px-4 py-2 pr-8 hover:border-gray-500"
+                    class="shadow rounded-md block w-full sm:text-sm bg-gray-50 px-4 py-2 border hover:bg-gray-100 hover:border-gray-300 focus:bg-gray-100 focus:ring-gray-800"
                   />
                 </div>
               </div>
@@ -74,11 +74,11 @@
                 >
                   Type
                 </label>
-                <div class="mt-1 flex rounded-md shadow-sm">
+                <div class="mt-1">
                   <select
                     id="type"
                     v-model="accessory.product_type"
-                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded shadow appearance-none capitalize bg-white border hover:border-gray-500 px-4 py-2 pr-8"
+                    class="shadow rounded-md block w-full sm:text-sm bg-gray-50 px-4 py-2 border hover:bg-gray-100 hover:border-gray-300 focus:bg-gray-100 focus:ring-gray-800 appearance-none"
                   >
                     <option class="text-gray-500">Select...</option>
                     <option
@@ -98,15 +98,15 @@
                 >
                   Capacity
                 </label>
-                <div class="mt-1 flex rounded-md shadow">
+                <div class="mt-1 flex">
                   <input
                     type="number"
                     id="capacity"
                     v-model="accessory.capacity"
-                    class="focus:ring-indigo-500 rounded-l-md focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 px-4 py-2 pr-8 hover:border-gray-500"
+                    class="shadow rounded-l-md block w-full sm:text-sm bg-gray-50 px-4 py-2 border hover:bg-gray-100 hover:border-gray-300 focus:bg-gray-100 focus:ring-gray-800"
                   />
                   <span
-                    class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm"
+                    class="inline-flex items-center px-3 rounded-r-md border border-l-0 bg-gray-50 text-sm"
                   >
                     W
                   </span>

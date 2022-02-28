@@ -17,22 +17,23 @@
                   Brand
                 </label>
                 <div class="mt-1 flex rounded-md">
-                  <select
-                    name="brand"
+                  <combobox
+                    v-model="selectedBrand"
                     id="brand"
-                    v-model="device.brand"
                     class="block w-full sm:text-sm border border-gray-200 focus:border-gray-800 rounded shadow appearance-none bg-transparent hover:border-gray-500 px-4 py-2 pr-8"
                   >
-                    <option class="text-gray-500">Select...</option>
-                    <option
-                      v-for="brand in brands"
-                      :key="brand"
-                      :value="brand"
-                      class="capitalize"
-                    >
-                      {{ brand }}
-                    </option>
-                  </select>
+                    <combobox-input @change="query = $event.target.value" />
+                    <combobox-options>
+                      <combobox-option
+                        v-for="brand in filteredBrands"
+                        :key="brand"
+                        :value="brand"
+                        class="capitalize"
+                      >
+                        {{ brand }}
+                      </combobox-option>
+                    </combobox-options>
+                  </combobox>
                 </div>
               </div>
               <div class="col-span-2">
@@ -409,21 +410,31 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { fetchProcessors } from '@/api/devices';
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxOptions,
+  ComboboxOption,
+} from '@headlessui/vue';
 
 export default {
+  components: { Combobox, ComboboxInput, ComboboxOptions, ComboboxOption },
+
   setup() {
     const processors = ref([]);
-    const brands = ref([
-      'HP',
-      'Dell',
-      'Apple',
-      'Lenovo',
-      'Acer',
-      'Toshiba',
-      'Asus',
-    ]);
+    const brands = ['HP', 'Dell', 'Apple', 'Lenovo', 'Acer', 'Toshiba', 'Asus'];
+    const selectedBrand = ref(brands[0]);
+    const query = ref('');
+
+    const filteredBrands = computed(() =>
+      query.value === ''
+        ? brands
+        : brands.filter((item) => {
+            return item.toLowerCase().includes(query.value.toLowerCase());
+          })
+    );
     const storage_types = ref(['hdd', 'ssd', 'emmc']);
     const graphics_types = ref([
       'Intel HD / UHD',
@@ -447,7 +458,15 @@ export default {
 
     onMounted(getProcessors);
 
-    return { processors, brands, storage_types, graphics_types, types };
+    return {
+      processors,
+      storage_types,
+      graphics_types,
+      types,
+      selectedBrand,
+      filteredBrands,
+      query,
+    };
   },
   data() {
     return {
