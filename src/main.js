@@ -5,4 +5,14 @@ import router from "./router";
 import './assets/tailwind.css';
 /* import './assets/style.css'; */
 
-createApp(App).use(router).mount("#app");
+import { VueCookieNext } from 'vue-cookie-next';
+
+VueCookieNext.config({
+  expire: '3d',
+  path: '/',
+});
+
+createApp(App)
+  .use(router)
+  .use(VueCookieNext)
+  .mount("#app");

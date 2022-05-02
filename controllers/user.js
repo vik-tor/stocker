@@ -58,14 +58,14 @@ const signin = async (req, res) => {
     return res.status(422).jsonp(errors.array());
   };
 
-  const { email, username, password } = req.body;
+  const { username, password } = req.body;
 
   var param = email ? email : username;
 
   await User.fetchUser(param, async (err, user) => {
     if (err) {
       if (err.received == 0) {
-        errorMessage.error = 'User with the email (' + email + ') does not exist';
+        errorMessage.error = 'User (' + param + ') does not exist';
         return res.status(status.notfound).send(errorMessage);
       } else {
         errorMessage.error = 'Could not fetch data: ' + err.message;

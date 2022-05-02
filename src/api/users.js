@@ -1,4 +1,4 @@
-import { authHeader } from "../utils/authHeader";
+import { authHeader } from "../utils/auth_header";
 import server from "../utils/server";
 
 const signIn = async (data, callback) => {

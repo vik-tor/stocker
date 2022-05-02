@@ -94,3 +94,13 @@ CREATE TABLE stock.sales (
   FOREIGN KEY (product_type) REFERENCES stock.product_types (id),
   FOREIGN KEY (user_id) REFERENCES stock.users (id)
 );
+
+CREATE ROLE keeper WITH LOGIN;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA stock TO keeper;
+
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA stock TO keeper;
+
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA stock TO keeper;
+
+GRANT ALL PRIVILEGES ON SCHEMA stock TO keeper;

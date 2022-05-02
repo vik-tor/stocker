@@ -287,11 +287,14 @@
       </div>
     </div>
   </div>
+  <auth-card :isOpen="!loggedIn" />
 </template>
 
 <script>
 import { ref, onMounted } from 'vue';
+import { isLoggedIn } from '@/utils/auth';
 
+import AuthCard from '@/components/AuthCard';
 import TheNavbar from '../components/TheNavbar.vue';
 import StatsCard from '../components/StatsCard.vue';
 import Greeting from '../components/Greeting.vue';
@@ -299,6 +302,7 @@ import Greeting from '../components/Greeting.vue';
 export default {
   name: 'Home',
   components: {
+    AuthCard,
     TheNavbar,
     StatsCard,
     Greeting,
@@ -329,6 +333,25 @@ export default {
     return {
       month,
     };
+  },
+  data() {
+    return {
+      loggedIn: false,
+    };
+  },
+  mounted() {
+    this.checkLogin();
+  },
+  methods: {
+    checkLogin() {
+      if (!isLoggedIn()) {
+        this.loggedIn = false;
+        console.log('not logged in');
+      } else {
+        this.loggedIn = true;
+        console.log('logged in');
+      }
+    },
   },
 };
 </script>
