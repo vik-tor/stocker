@@ -5,7 +5,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    meta: { requiresAuth: true, admin: false },
+    meta: { admin: false },
     component: () =>
       import(/* webpackChunkName: "devices" */ "./views/Home"),
   },
@@ -13,7 +13,7 @@ const routes = [
     path: "/devices",
     name: "devices",
     props: true,
-    meta: { requiresAuth: true, admin: false },
+    meta: { admin: false },
     component: () =>
       import(/* webpackChunkName: "devices" */ "./views/Devices"),
   },
@@ -21,7 +21,7 @@ const routes = [
     path: "/accessories",
     name: "accessories",
     props: true,
-    meta: { requiresAuth: true, admin: false },
+    meta: { admin: false },
     component: () =>
       import(/* webpackChunkName: "accessories" */ "./views/Accessories"),
   },
@@ -29,33 +29,33 @@ const routes = [
     path: "/repairs",
     name: "repairs",
     props: true,
-    meta: { requiresAuth: true, admin: false },
+    meta: { admin: false },
     component: () =>
       import(/* webpackChunkName: "repairs" */ "./views/Repairs"),
   },
   {
     path: "/new/import",
     name: "import",
-    meta: { requiresAuth: true, admin: false },
+    meta: { admin: false },
     component: () => import(/* webpackChunkName: "import" */ "./views/Import"),
   },
   {
     path: "/new/device",
     name: "new_device",
-    meta: { requiresAuth: true, admin: false },
+    meta: { admin: false },
     component: () => import(/* webpackChunkName: "new_device" */ "./views/NewDevice"),
   },
   {
     path: "/new/accessory",
     name: "new_accessory",
-    meta: { requiresAuth: true, admin: false },
+    meta: { admin: false },
     component: () => import(/* webpackChunkName: "new_accessory" */ "./views/NewAccessory"),
   },
   {
     path: "/search",
     name: "search",
     props: true,
-    meta: { requiresAuth: true, admin: false },
+    meta: { admin: false },
     component: () =>
       import(/* webpackChunkName: "search" */ "./views/Results"),
   },
@@ -63,26 +63,26 @@ const routes = [
     path: "/sales",
     name: "sales",
     props: true,
-    meta: { requiresAuth: true, admin: false },
+    meta: { admin: false },
     component: () => import(/* webpackChunkName: "sales" */ "./views/Sales"),
   },
   {
     path: "/profile",
     name: "profile",
-    meta: { requiresAuth: true, admin: false },
+    meta: { admin: false },
     component: () => import(/* webpackChunkName: "profile" */ "./views/Profile"),
   },
   {
     path: "/users",
     name: "users",
     props: true,
-    meta: { requiresAuth: true, admin: true },
+    meta: { admin: true },
     component: () => import(/* webpackChunkName: "users" */ "./views/Users"),
   },
   {
     path: "/:pathMatch(.*)*",
     name: "notFound",
-    meta: { requiresAuth: false, admin: false },
+    meta: { admin: false },
     component: () => import(/* webpackChunkName: 'NotFound' */ "./views/404"),
   },
 ];

@@ -51,10 +51,11 @@
             <span class="ml-3">Dashboard</span>
           </router-link>
         </li>
-        <li class="my-px">
-          <span
-            class="flex font-medium text-sm text-gray-300 px-4 my-4 uppercase"
-          ></span>
+        <hr class="border border-b-0 border-t-1 border-gray-500 mt-6 mb-0" />
+        <li class="my-px mt-0">
+          <span class="flex font-bold text-sm text-gray-300 px-4 my-4 uppercase"
+            >Stock</span
+          >
         </li>
         <li class="my-px">
           <router-link
@@ -254,10 +255,11 @@
             </popover-panel>
           </popover>
         </li>
-        <li class="my-px">
-          <span
-            class="flex font-medium text-sm text-gray-300 px-4 my-4 uppercase"
-          ></span>
+        <hr class="border border-b-0 border-t-1 border-gray-500 mt-4 mb-0" />
+        <li class="my-px mt-0">
+          <span class="flex font-bold text-sm text-gray-300 px-4 my-4 uppercase"
+            >Admin</span
+          >
         </li>
         <li class="my-px">
           <router-link
