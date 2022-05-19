@@ -1,27 +1,31 @@
 <template>
   <the-navbar />
-  <div class="main-content flex flex-col px-4">
+  <div class="main-content flex flex-col px-4 lg:px-8">
     <!-- <stats-card /> -->
     <br />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <greeting />
+      <greeting>
+        <template #name>
+          {{ this.name }}
+        </template>
+      </greeting>
       <!-- status -->
-      <div class="card col-span-1">
-        <div class="card-body mb-auto">
+      <div class="card col-span-1 border-none">
+        <div class="card-body mb-0 bg-gray-50 shadow">
           <div class="flex flex-col items-left justify-between">
             <div class="flex-1">
               <p
-                class="mb-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                class="mb-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
                 {{ month }} Sales
               </p>
               <img
-                class="object-cover text-center w-auto h-28"
+                class="object-cover text-center w-auto h-28 hidden"
                 :src="require('@/assets/graphics/growing.svg')"
               />
             </div>
             <div class="flex-1 justify-between">
-              <div class="mt-10">
+              <div class="mt-2">
                 <p
                   class="capitalize text-lg text-gray-700 font-semibold mt-2 mb-0"
                 >
@@ -68,17 +72,79 @@
       </div>
       <!-- status -->
     </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 mb-12">
+      <div class="card col-span-1 mt-4 border-none">
+        <div class="card-body mb-auto bg-gray-50 shadow">
+          <div class="flex flex-col justify-left gap-2 mt-2">
+            <h3
+              class="text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
+            >
+              Quick links
+            </h3>
+            <div class="flex flex-wrap justify-left gap-2">
+              <div
+                class="p-2 w-11 flex items-center space-x-2 rounded saturate-50 hover:saturate-100"
+              >
+                <a href="https://jiji.co.ke" target="_blank"
+                  ><img
+                    :src="require('@/assets/social/jiji.png')"
+                    alt="Jiji.ke"
+                /></a>
+              </div>
 
-    <br />
+              <div
+                class="p-2 w-10 flex items-center space-x-2 rounded saturate-50 hover:saturate-100"
+              >
+                <a href="https://facebook.com" target="_blank">
+                  <img
+                    :src="require('@/assets/social/facebook.png')"
+                    alt="Facebook"
+                /></a>
+              </div>
+
+              <div
+                class="p-2 w-11 flex items-center space-x-2 rounded saturate-100 hover:saturate-100"
+              >
+                <a href="https://pigiame.co.ke" target="_blank">
+                  <img
+                    :src="require('@/assets/social/pigiame.png')"
+                    alt="pigiame.co.ke"
+                /></a>
+              </div>
+
+              <div
+                class="p-2 w-10 flex items-center space-x-2 rounded saturate-50 hover:saturate-100"
+              >
+                <a href="https://instagram.com" target="_blank">
+                  <img
+                    :src="require('@/assets/social/instagram.png')"
+                    alt="Instagram"
+                /></a>
+              </div>
+
+              <div
+                class="p-2 w-9 flex items-center space-x-2 rounded saturate-50 hover:saturate-100"
+              >
+                <a href="https://tiktok.com" target="_blank">
+                  <img
+                    :src="require('@/assets/social/tiktok.png')"
+                    alt="Tiktok"
+                /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <h3 class="font-semibold text-xl text-gray-700">Browse</h3>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 xl:grid-cols-4">
       <!-- card -->
-      <div class="card mt-6">
+      <div class="card mt-6 border-none">
         <router-link
           :to="{ name: 'devices', query: { item: 'laptops' } }"
-          class="card-body flex items-center hover:shadow-lg"
+          class="card-body flex items-center bg-gray-50 shadow hover:bg-gray-100"
         >
           <div class="px-3 py-2 rounded bg-indigo-600 text-white mr-3">
             <svg
@@ -104,10 +170,10 @@
       <!-- end card -->
 
       <!-- card -->
-      <div class="card mt-6">
+      <div class="card mt-6 border-none">
         <router-link
           :to="{ name: 'devices', query: { item: 'phones' } }"
-          class="card-body flex items-center"
+          class="card-body flex items-center bg-gray-50 shadow hover:bg-gray-100"
         >
           <div class="px-3 py-2 rounded bg-green-600 text-white mr-3">
             <svg
@@ -134,10 +200,10 @@
       <!-- end card -->
 
       <!-- card -->
-      <div class="card mt-6">
+      <div class="card mt-6 border-none">
         <router-link
           :to="{ name: 'accessories' }"
-          class="card-body flex items-center"
+          class="card-body flex items-center bg-gray-50 shadow hover:bg-gray-100"
         >
           <div class="px-3 py-2 rounded bg-yellow-600 text-white mr-3">
             <svg
@@ -166,10 +232,10 @@
       <!-- end card -->
 
       <!-- card -->
-      <div class="card mt-6">
+      <div class="card mt-6 border-none">
         <router-link
           :to="{ name: 'repairs' }"
-          class="card-body flex items-center"
+          class="card-body flex items-center bg-gray-50 shadow hover:bg-gray-100"
         >
           <div class="px-3 py-2 rounded bg-red-600 text-white mr-3">
             <svg
@@ -227,7 +293,7 @@
                     scope="col"
                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Payment Method
+                    Receipt no.
                   </th>
                   <th
                     scope="col"
@@ -252,23 +318,24 @@
                     <div class="text-sm">07/12/2021</div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-md font-medium text-gray-900">
+                    <div class="text-md font-medium text-gray-700">
                       HP EliteBook 840 G1
                     </div>
                     <div class="text-sm text-gray-500">Laptop</div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <span
-                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                    >
-                      Cash
-                    </span>
+                    <span class="text-sm">171 - 0023</span>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     N/A
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    Ksh. 40,000
+                    <span class="font-bold mb-2">Ksh. 40,000</span> <br />
+                    <span
+                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                    >
+                      Cash
+                    </span>
                   </td>
                   <!-- <td
                     class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
@@ -287,14 +354,11 @@
       </div>
     </div>
   </div>
-  <auth-card :isOpen="!loggedIn" />
 </template>
 
 <script>
 import { ref, onMounted } from 'vue';
-import { isLoggedIn } from '@/utils/auth';
 
-import AuthCard from '@/components/AuthCard';
 import TheNavbar from '../components/TheNavbar.vue';
 import StatsCard from '../components/StatsCard.vue';
 import Greeting from '../components/Greeting.vue';
@@ -302,7 +366,6 @@ import Greeting from '../components/Greeting.vue';
 export default {
   name: 'Home',
   components: {
-    AuthCard,
     TheNavbar,
     StatsCard,
     Greeting,
@@ -336,21 +399,15 @@ export default {
   },
   data() {
     return {
-      loggedIn: false,
+      name: '',
     };
   },
   mounted() {
-    this.checkLogin();
+    this.setName();
   },
   methods: {
-    checkLogin() {
-      if (!isLoggedIn()) {
-        this.loggedIn = false;
-        console.log('not logged in');
-      } else {
-        this.loggedIn = true;
-        console.log('logged in');
-      }
+    setName() {
+      return (this.name = this.$cookie.getCookie('user').first_name);
     },
   },
 };

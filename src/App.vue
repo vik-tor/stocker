@@ -1,49 +1,15 @@
 <template>
-  <div class="flex flex-row min-h-screen bg-gray-100 text-gray-800">
-    <the-sidebar class="hidden lg:flex" />
-    <main
-      class="main flex flex-col flex-grow lg:ml-64 transition-all duration-150 ease-in"
-    >
-      <router-view />
-      <footer class="footer px-4 py-6 sat">
-        <div class="footer-content">
-          <p class="text-sm text-gray-600 text-center">
-            &copy; <span class="italic">Chiras</span>, 2022. All rights reserved
-          </p>
-        </div>
-      </footer>
-    </main>
+  <div class="app min-h-screen text-gray-700">
+    <router-view />
   </div>
 </template>
 
-<script>
-import TheNavbar from './components/TheNavbar.vue';
-import TheSidebar from './components/TheSidebar.vue';
-
-export default {
-  components: {
-    TheNavbar,
-    TheSidebar,
-  },
-};
-</script>
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300;400;500;600;700&display=swap');
+
 #app {
-  background-color: #efefef;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  background-color: #fff;
+  font-family: 'Radio Canada', sans-serif;
 }
 
 .saturate-0 {

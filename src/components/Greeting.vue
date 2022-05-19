@@ -1,9 +1,11 @@
 <template>
-  <div class="card col-span-1">
-    <div class="card-body h-full flex flex-col justify-between">
+  <div class="card col-span-1 border-none">
+    <div
+      class="card-body h-full flex flex-col justify-between bg-gray-50 shadow"
+    >
       <div>
         <h1 class="text-xl font-extrabold text-red-800 mb-4">
-          {{ greeting }}, Moe!
+          {{ greeting }}, <slot name="name"></slot>
         </h1>
       </div>
 
@@ -17,61 +19,6 @@
           }}</span>
         </cite>
       </blockquote>
-
-      <div class="flex flex-col justify-left gap-2 mt-4">
-        <h3
-          class="pt-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
-        >
-          Quick links
-        </h3>
-        <div class="flex flex-wrap justify-left gap-2">
-          <div
-            class="p-2 w-11 flex items-center space-x-2 rounded saturate-50 hover:saturate-100"
-          >
-            <a href="https://jiji.co.ke" target="_blank"
-              ><img :src="require('@/assets/social/jiji.png')" alt="Jiji.ke"
-            /></a>
-          </div>
-
-          <div
-            class="p-2 w-10 flex items-center space-x-2 rounded saturate-50 hover:saturate-100"
-          >
-            <a href="https://facebook.com" target="_blank">
-              <img
-                :src="require('@/assets/social/facebook.png')"
-                alt="Facebook"
-            /></a>
-          </div>
-
-          <div
-            class="p-2 w-11 flex items-center space-x-2 rounded saturate-100 hover:saturate-100"
-          >
-            <a href="https://pigiame.co.ke" target="_blank">
-              <img
-                :src="require('@/assets/social/pigiame.png')"
-                alt="pigiame.co.ke"
-            /></a>
-          </div>
-
-          <div
-            class="p-2 w-10 flex items-center space-x-2 rounded saturate-50 hover:saturate-100"
-          >
-            <a href="https://instagram.com" target="_blank">
-              <img
-                :src="require('@/assets/social/instagram.png')"
-                alt="Instagram"
-            /></a>
-          </div>
-
-          <div
-            class="p-2 w-9 flex items-center space-x-2 rounded saturate-50 hover:saturate-100"
-          >
-            <a href="https://tiktok.com" target="_blank">
-              <img :src="require('@/assets/social/tiktok.png')" alt="Tiktok"
-            /></a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -92,13 +39,13 @@ export default {
     const greet = () => {
       const hour = new Date().getHours();
       if (hour >= 5 && hour < 12) {
-        greeting.value = 'Good morning';
+        greeting.value = 'Top of the morning to you';
       } else if (hour >= 12 && hour < 17) {
         greeting.value = 'Good afternoon';
       } else if (hour >= 17 && hour < 21) {
         greeting.value = 'Good evening';
       } else {
-        greeting.value = 'Good night';
+        greeting.value = 'Sweet dreams';
       }
     };
 

@@ -18,11 +18,11 @@ const signup = async (req, res) => {
   // comment
 
   const {
-    first_name, last_name, email, username, password, phone, gender, created_at
+    first_name, last_name, username, email, password
   } = req.body;
   const hashedPassword = await hashPassword(password);
   const values = [
-    first_name, last_name, email, username, hashedPassword, phone, gender, created_at
+    first_name, last_name, username, email, hashedPassword
   ];
 
   await User.create(values, (err, user) => {
@@ -60,7 +60,7 @@ const signin = async (req, res) => {
 
   const { username, password } = req.body;
 
-  var param = email ? email : username;
+  var param = username;
 
   await User.fetchUser(param, async (err, user) => {
     if (err) {

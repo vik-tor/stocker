@@ -69,9 +69,9 @@ class User {
   static async create(values, callback) {
     const stmt = `
       INSERT INTO stock.users (
-        first_name, last_name, username, email, password, status, role, created_at
+        first_name, last_name, username, email, password, created_at
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
+      VALUES ($1, $2, $3, $4, $5, NOW())
       RETURNING *
     `;
 

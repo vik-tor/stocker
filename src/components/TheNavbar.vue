@@ -1,5 +1,5 @@
 <template>
-  <header class="header py-4 px-4">
+  <header class="header py-4 px-4 lg:px-8">
     <div class="header-content flex items-center flex-row">
       <h1 class="font-bold capitalize text-2xl text-gray-900 lg:mr-10">
         {{ $route.name }}

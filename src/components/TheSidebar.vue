@@ -1,16 +1,16 @@
 <template>
   <aside
-    class="sidebar w-64 lg:fixed h-full lg:shadow-lg ease-in bg-black flex-col z-10"
+    class="sidebar h-full w-64 xl:w-72 2xl:w-80 rounded-r-xl mt-2 mb-5 lg:fixed lg:shadow-lg border-r-2 border-gray-200 ease-in bg-gray-300 flex-col z-10"
   >
     <div class="sidebar-header flex items-center justify-center py-4 lg:mt-6">
       <div class="inline-flex">
         <router-link
-          :to="{ name: 'Home' }"
+          :to="{ name: 'home' }"
           class="inline-flex flex-col items-left text-left"
         >
           <img
             :src="require('@/assets/logo.png')"
-            width="160"
+            width="200"
             class="text-red-400 mb-2"
             alt=""
           />
@@ -21,16 +21,50 @@
         </router-link>
       </div>
     </div>
-    <div class="sidebar-content px-4 py-6 my-auto">
+    <div class="sidebar-content px-4 xl:px-6 2xl:px-8 py-6 my-auto">
       <ul class="flex flex-col w-full">
         <li class="my-px text-center">
           <router-link
-            :to="{ name: 'Home' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg"
+            :to="{ name: 'home' }"
+            class="flex flex-row items-center align-middle h-10 px-5 rounded-xl"
             :class="[
-              $route.name === 'Home'
-                ? 'text-white bg-red-800 font-semibold hover:bg-red-600 hover:text-white'
-                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
+              $route.name === 'home'
+                ? 'text-white bg-gray-900 font-bold hover:bg-gray-800 hover:text-white'
+                : 'text-gray-600 font-medium hover:bg-gray-50 hover:text-gray-900',
+            ]"
+          >
+            <span class="text-lg">
+              <svg
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                class="h-5 w-5"
+              >
+                <path
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                />
+              </svg>
+            </span>
+            <span class="ml-4 text-sm tracking-wide">Home</span>
+          </router-link>
+        </li>
+        <hr class="border border-b-0 border-t-1 border-gray-400 mt-6 mb-0" />
+        <li class="my-px mt-0">
+          <span class="flex font-bold text-sm text-red-700 px-4 my-4"
+            >Stock</span
+          >
+        </li>
+        <li class="my-px mb-1">
+          <router-link
+            :to="{ name: 'devices' }"
+            class="flex flex-row items-center h-10 px-5 rounded-lg"
+            :class="[
+              $route.name === 'devices'
+                ? 'text-white bg-gray-900 font-bold hover:bg-gray-800 hover:text-white'
+                : 'text-gray-600 font-medium hover:bg-gray-50 hover:text-gray-900',
             ]"
           >
             <span class="flex items-center justify-center text-lg">
@@ -41,65 +75,27 @@
                 stroke-width="2"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                class="h-6 w-6"
-              >
-                <path
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </span>
-            <span class="ml-3">Dashboard</span>
-          </router-link>
-        </li>
-        <hr class="border border-b-0 border-t-1 border-gray-500 mt-6 mb-0" />
-        <li class="my-px mt-0">
-          <span class="flex font-bold text-sm text-gray-300 px-4 my-4 uppercase"
-            >Stock</span
-          >
-        </li>
-        <li class="my-px">
-          <router-link
-            :to="{ name: 'devices' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg"
-            :class="[
-              $route.name === 'devices'
-                ? 'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white'
-                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
-            ]"
-          >
-            <span
-              class="flex items-center justify-center text-lg text-gray-400"
-            >
-              <svg
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="h-6 w-6"
+                class="h-5 w-5"
               >
                 <path
                   d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
                 />
               </svg>
             </span>
-            <span class="ml-3">Devices</span>
+            <span class="ml-3 text-sm tracking-wide">Devices</span>
           </router-link>
         </li>
-        <li class="my-px">
+        <li class="my-px mb-1">
           <router-link
             :to="{ name: 'accessories' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg"
+            class="flex flex-row items-center h-10 px-5 rounded-lg"
             :class="[
               $route.name === 'accessories'
-                ? 'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white'
-                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
+                ? 'text-white bg-gray-900 font-semibold hover:bg-gray-800 hover:text-white'
+                : 'text-gray-600 font-medium hover:bg-gray-50 hover:text-gray-900',
             ]"
           >
-            <span
-              class="flex items-center justify-center text-lg text-gray-400"
-            >
+            <span class="flex items-center justify-center text-lg">
               <svg
                 fill="none"
                 stroke-linecap="round"
@@ -107,40 +103,39 @@
                 stroke-width="2"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                class="h-6 w-6"
+                class="h-5 w-5"
               >
                 <path
                   d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                 />
               </svg>
             </span>
-            <span class="ml-3">Accessories</span>
+            <span class="ml-3 text-sm tracking-wide"
+              >Accessories</span
+            >
           </router-link>
         </li>
-        <hr class="border border-b-0 border-t-1 border-gray-500 mt-2 mb-4" />
         <li class="my-px">
           <popover class="relative" v-slot="{ open }">
             <popover-button
-              class="flex flex-row items-center h-10 w-full px-3"
+              class="flex flex-row items-center h-10 w-full px-5"
               :class="[
                 (open && $route.name == 'new_accessory') ||
                 (open && $route.name == 'new_device') ||
                 (open && $route.name == 'import')
-                  ? 'text-white bg-red-800 font-semibold rounded-t-md'
+                  ? 'text-white bg-gray-900 font-semibold rounded-t-lg'
                   : (open && $route.name !== 'new_accessory') ||
                     (open && $route.name !== 'new_device') ||
                     (open && $route.name !== 'import')
-                  ? 'text-gray-800 bg-gray-100 font-medium rounded-t-md'
+                  ? 'text-gray-800 bg-white font-medium rounded-t-lg'
                   : (!open && $route.name == 'new_accessory') ||
                     (!open && $route.name == 'new_device') ||
                     (!open && $route.name == 'import')
-                  ? 'text-white bg-red-600 font-semibold hover:bg-red-700 hover:text-white rounded-md'
-                  : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700 rounded-md',
+                  ? 'text-white bg-gray-900 font-semibold hover:bg-gray-700 hover:text-white rounded-lg'
+                  : 'text-gray-700 font-medium hover:bg-gray-100 hover:text-gray-900 rounded-lg',
               ]"
             >
-              <span
-                class="flex items-center justify-center text-lg text-green-400"
-              >
+              <span class="flex items-center justify-center text-lg">
                 <svg
                   fill="none"
                   stroke-linecap="round"
@@ -148,18 +143,18 @@
                   stroke-width="2"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  class="h-6 w-6"
+                  class="h-5 w-5"
                 >
                   <path
                     d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
               </span>
-              <span class="ml-3">Add new</span>
+              <span class="ml-3 text-sm tracking-wide uppercase">Add new</span>
             </popover-button>
 
             <popover-panel
-              class="absolute z-10 text-gray-500 bg-gray-200 shadow-lg rounded-b-md w-full"
+              class="absolute z-10 text-gray-500 bg-gray-100 shadow-lg rounded-b-lg w-full py-2"
               v-slot="{ close }"
             >
               <li class="my-px">
@@ -172,9 +167,7 @@
                   }"
                   @click="close"
                 >
-                  <!-- <span
-                    class="flex items-center justify-center ml-7 text-lg text-gray-400"
-                  >
+                  <span class="flex items-center justify-center ml-2 text-lg">
                     <svg
                       fill="none"
                       stroke-linecap="round"
@@ -182,14 +175,14 @@
                       stroke-width="2"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
-                      class="h-6 w-6"
+                      class="h-4 w-4"
                     >
                       <path
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                  </span> -->
-                  <span class="ml-9">Import from file</span>
+                  </span>
+                  <span class="ml-3 text-sm">Import from file</span>
                 </router-link>
               </li>
               <li class="my-px">
@@ -202,9 +195,7 @@
                   }"
                   @click="close"
                 >
-                  <!-- <span
-                    class="flex items-center justify-center ml-7 text-lg text-gray-400"
-                  >
+                  <span class="flex items-center justify-center ml-2 text-lg">
                     <svg
                       fill="none"
                       stroke-linecap="round"
@@ -212,14 +203,14 @@
                       stroke-width="2"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
-                      class="h-6 w-6"
+                      class="h-4 w-4"
                     >
                       <path
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                  </span> -->
-                  <span class="ml-9">Device</span>
+                  </span>
+                  <span class="ml-3 text-sm">Device</span>
                 </router-link>
               </li>
               <li class="my-px">
@@ -232,9 +223,7 @@
                   }"
                   @click="close"
                 >
-                  <!-- <span
-                    class="flex items-center justify-center ml-7 text-lg text-gray-400"
-                  >
+                  <span class="flex items-center justify-center ml-2 text-lg">
                     <svg
                       fill="none"
                       stroke-linecap="round"
@@ -242,38 +231,36 @@
                       stroke-width="2"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
-                      class="h-6 w-6"
+                      class="h-4 w-4"
                     >
                       <path
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                  </span> -->
-                  <span class="ml-9">Accessory</span>
+                  </span>
+                  <span class="ml-3 text-sm">Accessory</span>
                 </router-link>
               </li>
             </popover-panel>
           </popover>
         </li>
-        <hr class="border border-b-0 border-t-1 border-gray-500 mt-4 mb-0" />
+        <hr class="border border-b-0 border-t-1 border-gray-400 mt-4 mb-0" />
         <li class="my-px mt-0">
-          <span class="flex font-bold text-sm text-gray-300 px-4 my-4 uppercase"
+          <span class="flex font-bold text-sm text-red-700 px-4 my-4"
             >Admin</span
           >
         </li>
         <li class="my-px">
           <router-link
             :to="{ name: 'sales' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg"
+            class="flex flex-row items-center h-10 px-5 rounded-lg"
             :class="[
               $route.name === 'sales'
-                ? 'text-white bg-red-800 font-semibold hover:bg-red-600 hover:text-white'
-                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
+                ? 'text-white bg-gray-900 font-semibold hover:bg-gray-700 hover:text-white'
+                : 'text-gray-700 font-medium hover:bg-gray-50 hover:text-gray-900',
             ]"
           >
-            <span
-              class="flex items-center justify-center text-lg text-gray-400"
-            >
+            <span class="flex items-center justify-center text-lg">
               <svg
                 fill="none"
                 stroke-linecap="round"
@@ -281,33 +268,31 @@
                 stroke-width="2"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                class="h-6 w-6"
+                class="h-5 w-5"
               >
                 <path
                   d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                 />
               </svg>
             </span>
-            <span class="ml-3">Sales</span>
-            <span
+            <span class="ml-3 text-sm tracking-wide">Sales</span>
+            <!-- <span
               class="flex items-center justify-center text-xs text-red-500 font-semibold bg-red-100 h-6 px-2 rounded-full ml-auto"
               >1k</span
-            >
+            > -->
           </router-link>
         </li>
         <li class="my-px">
           <router-link
             :to="{ name: 'users' }"
-            class="flex flex-row items-center h-10 px-3 rounded-lg"
+            class="flex flex-row items-center h-10 px-5 rounded-lg"
             :class="[
               $route.name === 'users'
-                ? 'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white'
-                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
+                ? 'text-white bg-gray-900 font-semibold hover:bg-gray-800 hover:text-white'
+                : 'text-gray-600 font-medium hover:bg-gray-50 hover:text-gray-900',
             ]"
           >
-            <span
-              class="flex items-center justify-center text-lg text-gray-400"
-            >
+            <span class="flex items-center justify-center text-lg">
               <svg
                 fill="none"
                 stroke-linecap="round"
@@ -315,74 +300,54 @@
                 stroke-width="2"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                class="h-6 w-6"
+                class="h-5 w-5"
               >
                 <path
                   d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                 />
               </svg>
             </span>
-            <span class="ml-3">Users</span>
+            <span class="ml-3 text-sm tracking-wide">Users</span>
           </router-link>
         </li>
-
-        <!-- <li class="my-px">
-          <a
-            href="#"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
+      </ul>
+    </div>
+    <div class="sidebar-footer mt-auto px-4 xl:px-6 2xl:px-8 py-6 w-full">
+      <hr class="border border-b-0 border-t-1 border-gray-400 mt-2 mb-4" />
+      <ul class="flex flex-col w-full mb-4">
+        <li class="my-px px-3 mb-1">
+          <router-link
+            :to="{ name: 'profile' }"
+            class="flex flex-row items-center h-14 px-4 py-4 rounded-lg"
+            :class="[
+              $route.name == 'profile'
+                ? 'text-white bg-gray-900 font-semibold hover:bg-gray-700 hover:text-white'
+                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+            ]"
           >
-            <span
-              class="flex items-center justify-center text-lg text-gray-400"
-            >
-              <svg
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="h-6 w-6"
+            <img
+              :src="require('@/assets/images/graphics/user2.jpg')"
+              alt
+              class="h-10 w-10 bg-red-200 border rounded-full"
+            />
+            <span class="flex flex-col ml-3">
+              <span
+                class="truncate w-20 font-semibold text-sm"
+                >{{ name }}</span
               >
-                <path
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
+              <span class="truncate w-20 text-xs leading-none mt-1">{{
+                role
+              }}</span>
             </span>
-            <span class="ml-3">Profile</span>
-          </a>
+          </router-link>
         </li>
-        <li class="my-px">
-          <a
-            href="#"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
+        <li class="my-px px-3">
+          <button
+            type="button"
+            class="flex flex-row items-center h-10 w-full px-5 rounded-lg text-red-600 font-semibold hover:bg-red-100 hover:text-red-800"
+            @click="logout()"
           >
-            <span
-              class="flex items-center justify-center text-lg text-gray-400"
-            >
-              <svg
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                class="h-6 w-6"
-              >
-                <path
-                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                />
-                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </span>
-            <span class="ml-3">Settings</span>
-          </a>
-        </li>
-        <li class="my-px">
-          <a
-            href="#"
-            class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
-          >
-            <span class="flex items-center justify-center text-lg text-red-400">
+            <span class="flex items-center justify-center text-lg ml-1">
               <svg
                 fill="none"
                 stroke-linecap="round"
@@ -397,58 +362,10 @@
                 />
               </svg>
             </span>
-            <span class="ml-3">Logout</span>
-          </a>
-        </li> -->
+            <span class="ml-5 text-sm tracking-wide">Log Out</span>
+          </button>
+        </li>
       </ul>
-    </div>
-    <div class="sidebar-footer px-4 py-6 mt-auto">
-      <div class="flex flex-col w-full">
-        <div class="my-px"></div>
-        <div class="my-px flex px-3">
-          <router-link
-            :to="{ name: 'profile' }"
-            class="flex flex-row items-center h-10 rounded-lg"
-            :class="[
-              $route.name == 'profile'
-                ? 'text-white bg-red-600 font-semibold hover:bg-red-600 hover:text-white'
-                : 'text-gray-100 hover:bg-gray-100 hover:text-gray-700',
-            ]"
-          >
-            <img
-              :src="require('@/assets/images/graphics/user2.jpg')"
-              alt
-              class="h-10 w-10 bg-red-200 border rounded-full"
-            />
-            <span class="flex flex-col ml-2">
-              <span
-                class="truncate w-20 text-gray-100 font-semibold tracking-wide leading-none"
-                >John Doe</span
-              >
-              <span
-                class="truncate w-20 text-gray-500 text-xs leading-none mt-1"
-                >Manager</span
-              >
-            </span>
-          </router-link>
-        </div>
-        <!-- <div class="my-px flex flex-row text-gray-200">
-          <svg
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            class="h-6 w-6"
-          >
-            <path
-              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-            />
-          </svg>
-          <p>Yes</p>
-        </div> -->
-      </div>
     </div>
   </aside>
 </template>
@@ -479,6 +396,29 @@ export default {
         isOpen.value = true;
       },
     };
+  },
+  data() {
+    return {
+      name: '',
+      role: '',
+    };
+  },
+  mounted() {
+    this.setUser();
+  },
+  methods: {
+    setUser() {
+      return (
+        (this.name = this.$cookie.getCookie('user').username),
+        (this.role = this.$cookie.getCookie('user').role)
+      );
+    },
+    logout() {
+      this.$cookie.removeCookie('token');
+      this.$cookie.removeCookie('refresh');
+      this.$cookie.removeCookie('user');
+      this.$router.push({ name: 'auth' });
+    },
   },
 };
 </script>

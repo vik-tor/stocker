@@ -8,8 +8,16 @@ const userController = require('../controllers/user');
 router.post('/signup', [
   check('first_name', 'Enter your first name').isLength({ max: 20, min: 3 }).trim().escape().not().isEmpty(),
   check('last_name', 'Enter your last name').isLength({ max: 20, min: 3 }).trim().escape().not().isEmpty(),
+  check('username', 'Enter your username').isLength({ max: 50, min: 3 }).trim().escape().not().isEmpty(),
   check('email', 'Enter a valid email address').isEmail().normalizeEmail().not().isEmpty(),
   check('password', 'Enter a strong password').isLength({ min: 6 }).not().isEmpty(),
+  check('c_password', 'Passwords do not match').custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error('Passwords do not match');
+    } else {
+      return value;
+    }
+  }),
 ], userController.signup);
 router.post('/signin', [
   check('password', 'Enter your password').not().isEmpty(),
