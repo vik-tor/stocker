@@ -12,6 +12,18 @@
   font-family: 'Radio Canada', sans-serif;
 }
 
+::placeholder {
+  color: #eee;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+}
+::-webkit-input-placeholder {
+  /* Edge */
+  color: #eee;
+  font-size: 0.875rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+}
+
 .saturate-0 {
   filter: saturate(0);
 }

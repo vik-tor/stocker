@@ -45,11 +45,11 @@
                   <Tab as="template" v-slot="{ selected }">
                     <button
                       :class="[
-                        'w-full py-2.5 leading-5 rounded-lg',
+                        'w-full py-2 leading-5 rounded-lg text-sm font-medium',
                         'focus:outline-none focus:ring-0',
                         selected
                           ? 'bg-white shadow text-red-800 font-bold'
-                          : 'text-blue-700 font-medium hover:bg-white/[0.12] hover:text-gray-900',
+                          : 'text-gray-900 hover:bg-white/[0.12] hover:text-blue-700',
                       ]"
                     >
                       Log in
@@ -58,11 +58,11 @@
                   <Tab as="template" v-slot="{ selected }">
                     <button
                       :class="[
-                        'w-full py-2.5 leading-5 font-medium rounded-lg',
+                        'w-full py-2 leading-5 rounded-lg text-sm font-medium',
                         'focus:outline-none focus:ring-0',
                         selected
                           ? 'bg-white shadow text-red-800 font-bold'
-                          : 'text-blue-700 hover:bg-white/[0.12] hover:text-gray-900',
+                          : 'text-gray-900 hover:bg-white/[0.12] hover:text-blue-700',
                       ]"
                     >
                       Sign up
@@ -100,13 +100,20 @@
                           />
                         </div>
                       </div>
-                      <div class="mt-6">
+                      <div class="mt-6 flex justify-between">
                         <button
                           type="text"
-                          class="bg-yellow-400 text-sm text-gray-700 rounded px-4 py-2 w-full"
+                          class="bg-yellow-400 text-sm font-medium text-gray-700 rounded px-4 py-2 w-40"
+                          @click="checkLogin"
                         >
-                          SIGN IN
+                          Sign In
                         </button>
+                        <a
+                          href="#"
+                          class="text-sm font-medium text-blue-700 px-4 py-2 w-40"
+                        >
+                          Forgot password</a
+                        >
                       </div>
                     </div>
                   </TabPanel>
